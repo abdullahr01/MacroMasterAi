@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:macromasterai/Constants/Constants.dart';
+import 'package:macromasterai/Constants/IngredientsContainer.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key});
@@ -38,13 +40,11 @@ class _CartState extends State<Cart> {
                       },
                     ),
                   ),
-                  const Text(
-                    "Details",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
+                  const PoppinsTextStyle(
+                      text: 'Details',
+                      textSize: 20,
+                      textColor: Colors.black,
+                      isBold: true),
                   Container(
                     height: 40,
                     width: 40,
@@ -69,11 +69,12 @@ class _CartState extends State<Cart> {
                 height: 30,
               ),
               const Padding(
-                padding: EdgeInsets.only(right: 170),
-                child: Text(
-                  "Baked salmon & asparagus",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
+                padding: EdgeInsets.only(right: 175),
+                child: PoppinsTextStyle(
+                    text: 'Baked salmon & asparagus',
+                    textSize: 13,
+                    textColor: Colors.black,
+                    isBold: true),
               ),
               const SizedBox(
                 height: 10,
@@ -89,48 +90,46 @@ class _CartState extends State<Cart> {
               ),
               Row(
                 children: [
-                  Container(
+                  SizedBox(
                     // color: Colors.grey,
                     height: 140,
                     width: 140,
                     child:
-                    Image.asset('images/qq7prqha8j0f960b77ped3dd8g 1.png'),
+                        Image.asset('images/qq7prqha8j0f960b77ped3dd8g 1.png'),
                   ),
                   const Padding(
                     padding: EdgeInsets.only(bottom: 10, left: 15),
                     child: Column(
                       children: [
-                        Text(
-                          "Calories",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
-                        ),
+                        PoppinsTextStyle(
+                            text: 'Calories',
+                            textSize: 15,
+                            textColor: Colors.black,
+                            isBold: true),
                         SizedBox(
                           height: 5,
                         ),
-                        Text(
-                          "190 kcal",
-                          style: TextStyle(
-                            // fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
+                        PoppinsTextStyle(
+                            text: '190 kcal',
+                            textSize: 14,
+                            textColor: Colors.black,
+                            isBold: false),
                         SizedBox(
                           height: 25,
                         ),
-                        Text(
-                          "Protein",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
-                        ),
+                        PoppinsTextStyle(
+                            text: 'Protein',
+                            textSize: 15,
+                            textColor: Colors.black,
+                            isBold: true),
                         SizedBox(
                           height: 5,
                         ),
-                        Text(
-                          "87 g",
-                          style: TextStyle(
-                            // fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        )
+                        PoppinsTextStyle(
+                            text: '87 g',
+                            textSize: 14,
+                            textColor: Colors.black,
+                            isBold: false),
                       ],
                     ),
                   ),
@@ -138,37 +137,35 @@ class _CartState extends State<Cart> {
                     padding: EdgeInsets.only(left: 60, bottom: 11),
                     child: Column(
                       children: [
-                        Text(
-                          "Fat",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
-                        ),
+                       PoppinsTextStyle(
+                            text: 'Fat',
+                            textSize: 15,
+                            textColor: Colors.black,
+                            isBold: true),
                         SizedBox(
                           height: 5,
                         ),
-                        Text(
-                          "65 g",
-                          style: TextStyle(
-                            // fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
+                        PoppinsTextStyle(
+                            text: '65 g',
+                            textSize: 14,
+                            textColor: Colors.black,
+                            isBold: false),
                         SizedBox(
                           height: 25,
                         ),
-                        Text(
-                          "Carbs",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
-                        ),
+                        PoppinsTextStyle(
+                            text: 'Carbs',
+                            textSize: 15,
+                            textColor: Colors.black,
+                            isBold: true),
                         SizedBox(
                           height: 5,
                         ),
-                        Text(
-                          "84 g",
-                          style: TextStyle(
-                            // fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        )
+                        PoppinsTextStyle(
+                            text: '84 g',
+                            textSize: 14,
+                            textColor: Colors.black,
+                            isBold: false),
                       ],
                     ),
                   )
@@ -179,32 +176,36 @@ class _CartState extends State<Cart> {
               ),
               const Padding(
                 padding: EdgeInsets.only(right: 270),
-                child: Text(
-                  "About Food",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
+                child: PoppinsTextStyle(
+                            text: 'About Food',
+                            textSize: 16,
+                            textColor: Colors.black,
+                            isBold: true),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                "Duis vestibulum risus nec sem auctor, sita amet fermentum odio mollis. Vivamus eleifend, food a non volutpat venenatis, neque elit viver healthy augue, in accumsan orci diam et augue. Nunc a sodales iaculis congue. Nullam vita food salmon laoreet, maximus sapien nec, sollicitudin dolor. Nunc interdum fermentum dolor nec an tempus. Nullam pellentesque odio id libero bibendum, id sagittis leo vulputate. Donec odio eros, healthy sollicitudin ut quam ut, suscipit aliquet neque.",
-                style: TextStyle(fontSize: 15, color: Colors.grey),
+              const PoppinsTextStyle(
+                text: "Duis vestibulum risus nec sem auctor, sita amet fermentum odio mollis. Vivamus eleifend, food a non volutpat venenatis, neque elit viver healthy augue, in accumsan orci diam et augue. Nunc a sodales iaculis congue. Nullam vita food salmon laoreet, maximus sapien nec, sollicitudin dolor. Nunc interdum fermentum dolor nec an tempus. Nullam pellentesque odio id libero bibendum, id sagittis leo vulputate. Donec odio eros, healthy sollicitudin ut quam ut, suscipit aliquet neque.",
+                textColor: Colors.grey,
+                textSize: 15,
+                isBold: false,
               ),
               const SizedBox(
                 height: 20,
               ),
               const Padding(
                 padding: EdgeInsets.only(right: 270),
-                child: Text(
-                  "Ingredients",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
+                child: PoppinsTextStyle(
+                            text: 'Ingredients',
+                            textSize: 16,
+                            textColor: Colors.black,
+                            isBold: true),
               ),
               const SizedBox(
                 height: 15,
               ),
-              Container(
+              SizedBox(
                 height: 70,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -237,48 +238,20 @@ class _CartState extends State<Cart> {
                 height: 50,
                 width: 350,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.red
-                ),
+                    borderRadius: BorderRadius.circular(30), color: Colors.red),
                 child: const Center(
-                  child: Text(
-                    "Add to Basket",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold
-                    ),
-                  ),
+                  child: PoppinsTextStyle(
+                            text: 'Add to Basket',
+                            textSize: 15,
+                            textColor: Colors.white,
+                            isBold: true),
                 ),
               ),
-
             ],
           ),
         ),
       ),
     );
-
   }
 }
 
-class IngredientsContainer extends StatelessWidget {
-  final Color containerColor;
-  final String imagePath;
-
-  const IngredientsContainer(
-      {required this.containerColor, required this.imagePath});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 70,
-      width: 70,
-      decoration: BoxDecoration(
-          color: containerColor, borderRadius: BorderRadius.circular(5)),
-      child: Image.asset(
-        imagePath,
-        // fit: BoxFit.cover,
-      ),
-    );
-  }
-}

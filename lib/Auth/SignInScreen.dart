@@ -27,7 +27,7 @@ class _SignInState extends State<SignIn> {
             children: [
               Hero(
                 tag: 'MacroAi',
-                child: Container(
+                child: SizedBox(
                   height: 120,
                   width: 120,
                   child: Image.asset('images/macromsaster.png.png'),
@@ -37,24 +37,28 @@ class _SignInState extends State<SignIn> {
                 controller: nameController,
                 labelText: "Name",
                 obscureText: false,
+                iconTextField: const Icon(Icons.person_outline_rounded),
               ),
               const SizedBox(height: 10),
               MyTextField(
                 controller: mobileNumberController,
                 labelText: "Mobile Number",
                 obscureText: false,
+                iconTextField: const Icon(Icons.phone),
               ),
               const SizedBox(height: 10),
               MyTextField(
                 controller: emailController,
                 labelText: "Email",
                 obscureText: false,
+                iconTextField: const Icon(Icons.email_outlined),
               ),
               const SizedBox(height: 10),
               MyTextField(
                 controller: passwordController,
                 labelText: "Password",
                 obscureText: true,
+                iconTextField: const Icon(Icons.fingerprint),
               ),
               const SizedBox(height: 20),
               GestureDetector(

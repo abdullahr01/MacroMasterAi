@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:macromasterai/Constants/Constants.dart';
+import 'package:macromasterai/Constants/CustomSlider.dart';
 
 class Details extends StatefulWidget {
   const Details({super.key});
@@ -42,13 +44,11 @@ class _DetailsState extends State<Details> {
                       },
                     ),
                   ),
-                  const Text(
-                    "Calorie Control",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
+                  const PoppinsTextStyle(
+                      text: 'Calorie Control',
+                      textSize: 18,
+                      textColor: Colors.black,
+                      isBold: true),
                   Container(
                     height: 40,
                     width: 40,
@@ -72,7 +72,7 @@ class _DetailsState extends State<Details> {
               const SizedBox(
                 height: 15,
               ),
-              Container(
+              SizedBox(
                 height: 220,
                 width: 220,
                 child: Image.asset(
@@ -84,20 +84,22 @@ class _DetailsState extends State<Details> {
               ),
               const Padding(
                 padding: EdgeInsets.only(right: 140),
-                child: Text(
-                  "Cheese & avocado salad ",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
+                child: PoppinsTextStyle(
+                    text: 'Cheese & avocado salad',
+                    textSize: 17,
+                    textColor: Colors.black,
+                    isBold: true),
               ),
               const SizedBox(
                 height: 1,
               ),
               const Padding(
                 padding: EdgeInsets.only(right: 149),
-                child: Text(
-                  "High protein main meal ",
-                  style: TextStyle(fontSize: 18, color: Colors.grey),
-                ),
+                child: PoppinsTextStyle(
+                    text: 'High protein main meal',
+                    textSize: 17,
+                    textColor: Colors.grey,
+                    isBold: false),
               ),
               const SizedBox(
                 height: 10,
@@ -108,40 +110,35 @@ class _DetailsState extends State<Details> {
                     height: 430,
                     width: 355,
                     decoration: BoxDecoration(
-                      // color: const Color(0xffffffff),
+                        // color: const Color(0xffffffff),
                         color: const Color(0xffffffff),
                         borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       children: [
                         const Padding(
                           padding: EdgeInsets.only(right: 200, top: 13),
-                          child: Text(
-                            "For 1 portion",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 19),
-                          ),
+                          child: PoppinsTextStyle(
+                              text: 'For 1 portion',
+                              textSize: 17,
+                              textColor: Colors.black,
+                              isBold: true),
                         ),
                         const Padding(
-                          padding: EdgeInsets.only(right: 30, top: 15, left: 24),
+                          padding: EdgeInsets.only(
+                              right: 30, top: 15, left: 24),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "Protein",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17),
-                              ),
-                              Text(
-                                "gram",
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    // fontWeight: FontWeight.bold,
-                                    fontSize: 17),
-                              ),
+                              PoppinsTextStyle(
+                                  text: 'Protein',
+                                  textSize: 16,
+                                  textColor: Colors.black,
+                                  isBold: true),
+                              PoppinsTextStyle(
+                                  text: 'gram',
+                                  textSize: 15,
+                                  textColor: Colors.grey,
+                                  isBold: false),
                             ],
                           ),
                         ),
@@ -161,8 +158,8 @@ class _DetailsState extends State<Details> {
                               value: _sliderValue,
                             ),
                             overlayColor: Colors.green.withOpacity(0.3),
-                            overlayShape:
-                            const RoundSliderOverlayShape(overlayRadius: 20.0),
+                            overlayShape: const RoundSliderOverlayShape(
+                                overlayRadius: 20.0),
                           ),
                           child: Slider(
                             value: _sliderValue,
@@ -176,24 +173,21 @@ class _DetailsState extends State<Details> {
                           ),
                         ),
                         const Padding(
-                          padding: EdgeInsets.only(right: 30, top: 15, left: 23),
+                          padding: EdgeInsets.only(
+                              right: 30, top: 15, left: 23),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "Carbs",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17),
-                              ),
-                              Text(
-                                "gram",
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    // fontWeight: FontWeight.bold,
-                                    fontSize: 17),
-                              ),
+                              PoppinsTextStyle(
+                                  text: 'Carbs',
+                                  textSize: 16,
+                                  textColor: Colors.black,
+                                  isBold: true),
+                              PoppinsTextStyle(
+                                  text: 'gram',
+                                  textSize: 15,
+                                  textColor: Colors.grey,
+                                  isBold: false),
                             ],
                           ),
                         ),
@@ -213,8 +207,8 @@ class _DetailsState extends State<Details> {
                               value: _sliderValue2,
                             ),
                             overlayColor: Colors.green.withOpacity(0.3),
-                            overlayShape:
-                            const RoundSliderOverlayShape(overlayRadius: 20.0),
+                            overlayShape: const RoundSliderOverlayShape(
+                                overlayRadius: 20.0),
                           ),
                           child: Slider(
                             value: _sliderValue2,
@@ -228,24 +222,21 @@ class _DetailsState extends State<Details> {
                           ),
                         ),
                         const Padding(
-                          padding: EdgeInsets.only(right: 30, top: 15, left: 28),
+                          padding: EdgeInsets.only(
+                              right: 30, top: 15, left: 28),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "Fat",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17),
-                              ),
-                              Text(
-                                "gram",
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    // fontWeight: FontWeight.bold,
-                                    fontSize: 17),
-                              ),
+                              PoppinsTextStyle(
+                                  text: 'Fat',
+                                  textSize: 16,
+                                  textColor: Colors.black,
+                                  isBold: true),
+                              PoppinsTextStyle(
+                                  text: 'gram',
+                                  textSize: 15,
+                                  textColor: Colors.grey,
+                                  isBold: false),
                             ],
                           ),
                         ),
@@ -265,8 +256,8 @@ class _DetailsState extends State<Details> {
                               value: _sliderValue3,
                             ),
                             overlayColor: Colors.green.withOpacity(0.3),
-                            overlayShape:
-                            const RoundSliderOverlayShape(overlayRadius: 20.0),
+                            overlayShape: const RoundSliderOverlayShape(
+                                overlayRadius: 20.0),
                           ),
                           child: Slider(
                             value: _sliderValue3,
@@ -288,38 +279,33 @@ class _DetailsState extends State<Details> {
                             width: 270,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
-                                color: const Color(0xfff2f2f2)
-                            ),
+                                color: const Color(0xfff2f2f2)),
                             child: Center(
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Padding(
                                     padding: EdgeInsets.only(left: 20),
-                                    child: Text(
-                                      "Total ",
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15
-                                      ),
-                                    ),
+                                    child: PoppinsTextStyle(
+                                        text: 'Total',
+                                        textSize: 15,
+                                        textColor: Colors.black,
+                                        isBold: true),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(right: 20),
-                                    child: Text(
-                                      "${totalCalories.toStringAsFixed(1)} calories",
-                                      style: const TextStyle(
-                                          color: Colors.grey,
-                                          // fontWeight: FontWeight.bold,
-                                          fontSize: 15
-                                      ),
+                                    child: PoppinsTextStyle(
+                                      text:
+                                          "${totalCalories.toStringAsFixed(1)} calories",
+                                      textColor: Colors.grey,
+                                      textSize: 14,
+                                      isBold: false,
                                     ),
                                   )
                                 ],
                               ),
-                            )
-                        ),
+                            )),
                       ],
                     ),
                   ),
@@ -330,8 +316,7 @@ class _DetailsState extends State<Details> {
                       width: 7,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: const Color(0xffeb0000)
-                      ),
+                          color: const Color(0xffeb0000)),
                     ),
                   ),
                 ],
@@ -341,72 +326,5 @@ class _DetailsState extends State<Details> {
         ),
       ),
     );
-  }
-}
-
-class CustomSliderThumbRect extends SliderComponentShape {
-  final double thumbRadius;
-  final double thumbHeight;
-  final double value;
-
-  CustomSliderThumbRect({
-    required this.thumbRadius,
-    required this.thumbHeight,
-    required this.value,
-  });
-
-  @override
-  Size getPreferredSize(bool isEnabled, bool isDiscrete) {
-    return Size(thumbRadius, thumbHeight);
-  }
-
-  @override
-  void paint(
-      PaintingContext context,
-      Offset center, {
-        Animation<double>? activationAnimation,
-        Animation<double>? enableAnimation,
-        bool? isDiscrete,
-        TextPainter? labelPainter,
-        RenderBox? parentBox,
-        SliderThemeData? sliderTheme,
-        TextDirection? textDirection,
-        double? textScaleFactor,
-        Size? sizeWithOverflow,
-        double? value,
-      }) {
-    final Canvas canvas = context.canvas;
-
-    final paint = Paint()
-      ..color = sliderTheme?.thumbColor ?? Colors.green
-      ..style = PaintingStyle.fill;
-
-    final centerRect = RRect.fromRectAndRadius(
-      Rect.fromCenter(center: center, width: thumbRadius, height: thumbHeight),
-      Radius.circular(thumbRadius * 0.2),
-    );
-
-    // Draw a rectangle instead of an oval
-    canvas.drawRRect(centerRect, paint);
-
-    // Display the value on the center of the thumb
-    if (labelPainter != null) {
-      labelPainter.text = TextSpan(
-        text: this.value.toStringAsFixed(1),
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 18.0,
-          // fontWeight: FontWeight.bold,
-        ),
-      );
-      labelPainter.textDirection = textDirection ?? TextDirection.ltr;
-      labelPainter.layout();
-
-      final textPainterOffset = Offset(
-        center.dx - labelPainter.width / 2.0,
-        center.dy - labelPainter.height / 2.0,
-      );
-      labelPainter.paint(canvas, textPainterOffset);
-    }
   }
 }

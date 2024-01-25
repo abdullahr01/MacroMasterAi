@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Hero(
                 tag: 'MacroAi',
-                child: Container(
+                child: SizedBox(
                   height: 170,
                   width: 170,
                   child: Image.asset('images/macromsaster.png.png'),
@@ -41,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: userNameController,
                 labelText: "Gmail",
                 obscureText: false,
+                iconTextField: const Icon(Icons.email_outlined),
               ),
               const SizedBox(
                 height: 15,
@@ -49,6 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: passwordController,
                 labelText: "Password",
                 obscureText: true,
+                iconTextField: const Icon(Icons.fingerprint),
               ),
               const SizedBox(
                 height: 20,

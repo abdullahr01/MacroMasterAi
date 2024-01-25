@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:macromasterai/Constants/Constants.dart';
+import 'package:macromasterai/Constants/FoodCard.dart';
+import 'package:macromasterai/Screens/ChatBot.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,7 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void dispose() {
@@ -46,13 +49,11 @@ class _HomePageState extends State<HomePage> {
                       },
                     ),
                   ),
-                  const Text(
-                    "Home",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
+                  const PoppinsTextStyle(
+                      text: 'Home',
+                      textSize: 20,
+                      textColor: Colors.black,
+                      isBold: true),
                   Container(
                     height: 40,
                     width: 40,
@@ -62,12 +63,13 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(60)),
                     child: IconButton(
                       icon: const Icon(
-                        Icons.menu,
-                        color: Colors.black,
-                        size: 20,
+                        Icons.sentiment_neutral_rounded,
+                        color: Colors.red,
+                        size: 22,
                       ),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ChatBot()));
                       },
                     ),
                   ),
@@ -87,22 +89,22 @@ class _HomePageState extends State<HomePage> {
                           horizontal: 30, vertical: 13),
                       hintText: 'Search',
                       hintStyle:
-                      const TextStyle(fontSize: 20, color: Colors.grey),
+                          const TextStyle(fontSize: 20, color: Colors.grey),
                       suffixIcon: Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: GestureDetector(
                             child: Container(
-                              height: 45,
-                              width: 47,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: Colors.red),
-                              child: const Icon(
-                                Icons.search,
-                                color: Colors.white,
-                                size: 26,
-                              ),
-                            )),
+                          height: 45,
+                          width: 47,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Colors.red),
+                          child: const Icon(
+                            Icons.search,
+                            color: Colors.white,
+                            size: 26,
+                          ),
+                        )),
                       ),
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.black),
@@ -127,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 150,
                 width: 340,
                 child: Row(
@@ -146,28 +148,28 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Padding(
                               padding:
-                              const EdgeInsets.only(top: 14, right: 46),
+                                  const EdgeInsets.only(top: 14, right: 30),
                               child: Column(
                                 children: [
-                                  const Text(
-                                    "Healthy Foods for you",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
-                                  ),
+                                  const PoppinsTextStyle(
+                                      text: 'Healthy Foods for you',
+                                      textSize: 15,
+                                      textColor: Colors.black,
+                                      isBold: true),
                                   const Padding(
                                     padding: EdgeInsets.only(top: 5, left: 12),
                                     child: Text(
                                       "Etiam in ex nec lobortis food luctus. Etiam iaculis healthy.",
                                       maxLines: 2,
                                       style: TextStyle(
-                                          color: Colors.black, fontSize: 15),
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontFamily: 'Poppins'),
                                     ),
                                   ),
                                   Padding(
                                     padding:
-                                    const EdgeInsets.only(top: 8, left: 10),
+                                        const EdgeInsets.only(top: 8, left: 10),
                                     child: GestureDetector(
                                       onTap: () {},
                                       child: Container(
@@ -175,17 +177,14 @@ class _HomePageState extends State<HomePage> {
                                         width: 170,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(30),
+                                                BorderRadius.circular(30),
                                             color: Colors.red),
                                         child: const Center(
-                                          child: Text(
-                                            "See all food",
-                                            // textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold),
-                                          ),
+                                          child: PoppinsTextStyle(
+                                              text: 'See all food',
+                                              textSize: 14,
+                                              textColor: Colors.white,
+                                              isBold: true),
                                         ),
                                       ),
                                     ),
@@ -202,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                               bottomRight: Radius.circular(15)),
                           color: Color(0xfff2f2f2),
                         ),
-                        child: Container(
+                        child: SizedBox(
                           child: Image.asset(
                               'images/greek-salad-caesar-salad-pasta-salad-recipe-salad-b86a44511c6f08ab49a6a0817f278be2 1.png'),
                         ))
@@ -214,18 +213,16 @@ class _HomePageState extends State<HomePage> {
               ),
               const Padding(
                 padding: EdgeInsets.only(right: 260),
-                child: Text(
-                  "New Food",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                ),
+                child: PoppinsTextStyle(
+                    text: 'New Food',
+                    textSize: 18,
+                    textColor: Colors.black,
+                    isBold: true),
               ),
               const SizedBox(
                 height: 15,
               ),
-              Container(
+              SizedBox(
                 height: 225,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -262,13 +259,11 @@ class _HomePageState extends State<HomePage> {
               ),
               const Padding(
                 padding: EdgeInsets.only(right: 224),
-                child: Text(
-                  "Popular Foods",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                ),
+                child: PoppinsTextStyle(
+                    text: 'Popular Food',
+                    textSize: 18,
+                    textColor: Colors.black,
+                    isBold: true),
               ),
               const SizedBox(
                 height: 20,
@@ -280,25 +275,22 @@ class _HomePageState extends State<HomePage> {
                   leading: Container(
                     height: 70,
                     decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                        BoxDecoration(borderRadius: BorderRadius.circular(50)),
                     child: Image.asset('images/Mask3.png'),
                   ),
-                  title: const Text(
-                    "Seasonal Salad",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
-                  ),
+                  title: const PoppinsTextStyle(
+                      text: 'Seasonal Salad',
+                      textSize: 14,
+                      textColor: Colors.black,
+                      isBold: true),
                   subtitle: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
-                        "Nunc fringilla, nibh ac malesu.",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          // fontWeight: FontWeight.bold
-                        ),
-                      ),
+                      PoppinsTextStyle(
+                          text: 'Nunc fringilla, nibh ac malesu.',
+                          textSize: 13,
+                          textColor: Colors.grey,
+                          isBold: false),
                       SizedBox(
                         height: 4,
                       ),
@@ -306,26 +298,23 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.only(right: 7),
                         child: Row(
                           children: [
-
                             Icon(
                               Icons.local_fire_department_outlined,
                               color: Colors.orange,
                             ),
-                            Text(
-                              "130 kcal",
-                              style: TextStyle(
-                                  color: Colors.grey
-                              ),
-                            ),
+                            PoppinsTextStyle(
+                                text: '130 kcal',
+                                textSize: 12,
+                                textColor: Colors.grey,
+                                isBold: false),
                             SizedBox(
                               width: 65,
                             ),
-                            Text(
-                              "\$14.50",
-                              style: TextStyle(
-                                color: Colors.grey,
-                              ),
-                            )
+                            PoppinsTextStyle(
+                                text: '\$14.50',
+                                textSize: 12,
+                                textColor: Colors.grey,
+                                isBold: false),
                           ],
                         ),
                       )
@@ -336,114 +325,6 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class FoodCard extends StatelessWidget {
-  final String imagePath;
-  final String name;
-  final double price;
-  final int kcal;
-
-  const FoodCard({
-    required this.imagePath,
-    required this.name,
-    required this.price,
-    required this.kcal,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 225,
-      width: 220,
-      decoration: BoxDecoration(
-        color: const Color(0xffffffff),
-        borderRadius: BorderRadius.circular(25),
-      ),
-      child: Column(
-        children: [
-          Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: Container(
-                  height: 140,
-                  width: 170,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Image.asset(imagePath),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 130, top: 20),
-                child: Container(
-                  height: 30,
-                  width: 30,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.favorite_border,
-                      color: Colors.orange,
-                      size: 15,
-                    ),
-                    onPressed: () {
-                      // Handle favorite icon tap
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 66),
-            child: Text(
-              name,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 14, top: 4),
-            child: Row(
-              children: [
-                Text(
-                  '\$ ${price.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    fontSize: 17,
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBox(
-                  width: 30,
-                ),
-                const Icon(
-                  Icons.local_fire_department_outlined,
-                  color: Colors.orange,
-                ),
-                Text(
-                  '$kcal kcal',
-                  style: const TextStyle(
-                    fontSize: 17,
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
       ),
     );
   }

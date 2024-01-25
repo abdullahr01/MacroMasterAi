@@ -1,8 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
+import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/ListImages.dart';
 import 'package:macromasterai/Screens/CalculateOrScd.dart';
+import 'package:macromasterai/Screens/UserProfileDetails.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -12,7 +14,10 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  final List<Color> gradientColor = [const Color(0xffFF0000), const Color(0xffffffff)];
+  final List<Color> gradientColor = [
+    const Color(0xffFF0000),
+    const Color(0xffffffff)
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +49,29 @@ class _ProfileState extends State<Profile> {
                       },
                     ),
                   ),
-                  const Text(
-                    "Profile",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
+                  const PoppinsTextStyle(
+                      text: 'Profile',
+                      textSize: 18,
+                      textColor: Colors.black,
+                      isBold: true),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const UserInfoDetails()));
+                    },
+                    child: Hero(
+                      tag: 'avatarHero',
+                      child: Container(
+                          height: 40,
+                          width: 40,
+                          // color: Colors.white,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(60)),
+                          child:
+                              Image.asset('images/avatar-removebg-preview.png')),
+                    ),
                   ),
-                  Container(
-                      height: 40,
-                      width: 40,
-                      // color: Colors.white,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(60)),
-                      child: Image.asset('images/avatar-removebg-preview.png')),
                 ],
               ),
               const SizedBox(
@@ -66,7 +79,8 @@ class _ProfileState extends State<Profile> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Schedule()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const Schedule()));
                 },
                 child: Container(
                   height: 180,
@@ -81,13 +95,11 @@ class _ProfileState extends State<Profile> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              "Weight",
-                              style: TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                            ),
+                            const PoppinsTextStyle(
+                                text: 'Weight',
+                                textSize: 17,
+                                textColor: Colors.black,
+                                isBold: true),
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: Container(
@@ -97,11 +109,11 @@ class _ProfileState extends State<Profile> {
                                     borderRadius: BorderRadius.circular(30),
                                     color: Colors.red),
                                 child: const Center(
-                                  child: Text(
-                                    "-7.5 kg",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16),
-                                  ),
+                                  child: PoppinsTextStyle(
+                                      text: '-7.5 kg',
+                                      textSize: 16,
+                                      textColor: Colors.white,
+                                      isBold: true),
                                 ),
                               ),
                             ),
@@ -110,13 +122,11 @@ class _ProfileState extends State<Profile> {
                       ),
                       const Padding(
                         padding: EdgeInsets.only(right: 250),
-                        child: Text(
-                          "54 kg",
-                          style: TextStyle(
-                              fontSize: 25,
-                              // fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                        ),
+                        child: PoppinsTextStyle(
+                            text: '54 kg',
+                            textSize: 22,
+                            textColor: Colors.grey,
+                            isBold: false),
                       ),
                       const SizedBox(
                         height: 7,
@@ -163,8 +173,10 @@ class _ProfileState extends State<Profile> {
                                     belowBarData: BarAreaData(
                                         show: true,
                                         gradient: LinearGradient(
-                                          colors: gradientColor.map((color) => color.withOpacity(0.3)).toList()
-                                        )))
+                                            colors: gradientColor
+                                                .map((color) =>
+                                                    color.withOpacity(0.3))
+                                                .toList())))
                               ])),
                         ),
                       )
@@ -207,13 +219,11 @@ class _ProfileState extends State<Profile> {
               ),
               const Padding(
                 padding: EdgeInsets.only(right: 200, top: 20),
-                child: Text(
-                  "Payment Methods",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 19,
-                      fontWeight: FontWeight.bold),
-                ),
+                child: PoppinsTextStyle(
+                    text: 'Payment Methods',
+                    textSize: 17,
+                    textColor: Colors.black,
+                    isBold: true),
               ),
               const SizedBox(height: 20),
               Swiper(
@@ -267,27 +277,22 @@ class MyCard extends StatelessWidget {
               children: [
                 const Padding(
                   padding: EdgeInsets.only(right: 54, top: 30),
-                  child: Text(
-                    "Next Workout",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
-                  ),
+                  child: PoppinsTextStyle(
+                      text: 'Next Workout',
+                      textSize: 15,
+                      textColor: Colors.black,
+                      isBold: true),
                 ),
                 const SizedBox(
                   height: 8,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 13),
-                  child: Text(
-                    text,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 20,
-                      // fontWeight: FontWeight.bold
-                    ),
-                  ),
+                  padding: const EdgeInsets.only(left: 12),
+                  child: PoppinsTextStyle(
+                      text: text,
+                      textSize: 19,
+                      textColor: Colors.grey,
+                      isBold: true),
                 ),
                 const SizedBox(
                   height: 15,
@@ -301,10 +306,11 @@ class MyCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(40),
                         color: Colors.red),
                     child: const Center(
-                      child: Text(
-                        "30 min",
-                        style: TextStyle(color: Colors.white, fontSize: 17),
-                      ),
+                      child: PoppinsTextStyle(
+                          text: '30 min',
+                          textSize: 15,
+                          textColor: Colors.white,
+                          isBold: true),
                     ),
                   ),
                 ),
@@ -312,7 +318,7 @@ class MyCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(right: 10),
-              child: Container(
+              child: SizedBox(
                 height: 150,
                 width: 100,
                 child: Image.asset(
