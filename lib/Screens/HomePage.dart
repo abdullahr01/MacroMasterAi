@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/FoodCard.dart';
@@ -12,6 +13,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController _searchController = TextEditingController();
+
+  void signoutTheUser() async {
+    await FirebaseAuth.instance.signOut();
+  }
 
   @override
   void dispose() {
@@ -45,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                         size: 20,
                       ),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        signoutTheUser();
                       },
                     ),
                   ),

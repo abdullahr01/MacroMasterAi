@@ -1,5 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:macromasterai/CommonScreen.dart';
 import 'package:macromasterai/Constants/InputTextField.dart';
 
 
@@ -11,10 +11,71 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final mobileNumberController = TextEditingController();
+
+  void createTheUser() async {
+  // Show loading circle
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (context) {
+      return const Center(child: CircularProgressIndicator());
+    },
+  );
+
+  try {
+    // Login the user
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+  } on FirebaseAuthException catch (e) {
+    // Dismiss the loading circle
+    Navigator.of(context, rootNavigator: true).pop();
+
+    // Handling different FirebaseAuthException error codes
+    String errorMessage;
+    switch (e.code) {
+      case 'user-not-found':
+        errorMessage = 'No user found for that email.';
+        break;
+      case 'email-already-in-use':
+        errorMessage = 'Email already in-use';
+        break;
+      // case 'invalid-email':
+      //   errorMessage = 'Email address is invalid.';
+      //   break;
+      // Add more cases for different error codes as needed
+
+      default:
+        // Handle unexpected error codes
+        errorMessage = 'An unexpected error occurred. Please try again.';
+        break;
+    }
+     print("FirebaseAuthException caught: ${e.code}");
+    showSnackbar(errorMessage);
+  } finally {
+    if (mounted) {
+      // Check if the loading circle is still present, then dismiss it
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      }
+    }
+  }
+}
+
+void showSnackbar(String errorMessage) {
+  final snackBar = SnackBar(
+    content: Text(errorMessage),
+    duration: const Duration(seconds: 3),
+  );
+
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +124,7 @@ class _SignInState extends State<SignIn> {
               const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const CommonScreenSelector()));
+                  createTheUser();
                 },
                 child: Container(
                   height: 50,

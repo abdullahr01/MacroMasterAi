@@ -1,6 +1,7 @@
+// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:macromasterai/Auth/SignInScreen.dart';
-import 'package:macromasterai/CommonScreen.dart';
 import 'package:macromasterai/Constants/InputTextField.dart';
 import 'package:macromasterai/Constants/SquareTiles.dart';
 
@@ -12,9 +13,80 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String? errorMessage = '';
+  bool isLogin = false;
+  
 
-  final userNameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+void loginTheUser() async {
+  // Show loading circle
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (context) {
+      return const Center(child: CircularProgressIndicator());
+    },
+  );
+
+  try {
+    // Login the user
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+  } on FirebaseAuthException catch (e) {
+    // Dismiss the loading circle
+    Navigator.of(context, rootNavigator: true).pop();
+
+    // Handling different FirebaseAuthException error codes
+    String errorMessage;
+    switch (e.code) {
+      case 'user-not-found':
+        errorMessage = 'No user found for that email.';
+        break;
+      case 'invalid-credential':
+        errorMessage = 'Wrong password or username provided for that user.';
+        break;
+      // case 'invalid-email':
+      //   errorMessage = 'Email address is invalid.';
+      //   break;
+      // Add more cases for different error codes as needed
+
+      default:
+        // Handle unexpected error codes
+        errorMessage = 'An unexpected error occurred. Please try again.';
+        break;
+    }
+     print("FirebaseAuthException caught: ${e.code}");
+    showSnackbar(errorMessage);
+  } finally {
+    if (mounted) {
+      // Check if the loading circle is still present, then dismiss it
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      }
+    }
+  }
+}
+
+void showSnackbar(String errorMessage) {
+  final snackBar = SnackBar(
+    content: Text(errorMessage),
+    duration: const Duration(seconds: 3),
+  );
+
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
+
+
+
+  Widget _errorMessage() {
+    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
+  }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20,
               ),
               MyTextField(
-                controller: userNameController,
+                controller: emailController,
                 labelText: "Gmail",
                 obscureText: false,
                 iconTextField: const Icon(Icons.email_outlined),
@@ -57,7 +129,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignIn()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const SignIn()));
                 },
                 child: const Align(
                   alignment: Alignment.centerRight,
@@ -75,7 +148,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignIn()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const SignIn()));
                 },
                 child: Align(
                   alignment: Alignment.centerRight,
@@ -94,7 +168,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignIn()));
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const SignIn()));
                         },
                         child: const Text(
                           "Sign Up",
@@ -111,10 +186,9 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 40,
               ),
-
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CommonScreenSelector()));
+                  loginTheUser();
                 },
                 child: Container(
                   height: 50,
@@ -145,19 +219,15 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Expanded(
                       child: Divider(
-                        thickness: 0.7,
-                        color: Colors.grey[400],
-                      )
-                  ),
-                  const Text(
-                      "Or continue with"
-                  ),
+                    thickness: 0.7,
+                    color: Colors.grey[400],
+                  )),
+                  const Text("Or continue with"),
                   Expanded(
                       child: Divider(
-                        thickness: 0.7,
-                        color: Colors.grey[400],
-                      )
-                  ),
+                    thickness: 0.7,
+                    color: Colors.grey[400],
+                  )),
                 ],
               ),
               const SizedBox(
@@ -167,14 +237,18 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //Google
-                  SquareTile(ImagePath: 'images/googlepng-removebg-preview.png'),
+                  SquareTile(
+                      ImagePath: 'images/googlepng-removebg-preview.png'),
                   SizedBox(
                     width: 15,
                   ),
-                  SquareTile(ImagePath: 'images/facebookpng-removebg-preview.png')
+                  SquareTile(
+                      ImagePath: 'images/facebookpng-removebg-preview.png')
                 ],
-              )
+              ),
+              _errorMessage(),
             ],
+
           ),
         ),
       ),

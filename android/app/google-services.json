@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1039971181082",
+    "project_id": "macromasterai",
+    "storage_bucket": "macromasterai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039971181082:android:9d1fa4dbae4853ae8627a3",
+        "android_client_info": {
+          "package_name": "com.example.macromasterai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBscx8jkcA7D4w4w7HZDX2APUekXefz1iA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
