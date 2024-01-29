@@ -12,17 +12,24 @@ class WidgetTree extends StatefulWidget {
 
 class _WidgetTreeState extends State<WidgetTree> {
   @override
-  Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, snapshot) {
-        if(snapshot.hasData) {
-          return const CommonScreenSelector();
-        }
-        else {
-          return const LoginPage();
-        }
-      },
-    );
-  }
+Widget build(BuildContext context) {
+  return StreamBuilder<User?>(
+    stream: FirebaseAuth.instance.authStateChanges(),
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        // Show a simple loading indicator while waiting for the stream
+        return Center(child: CircularProgressIndicator());
+      }
+
+      if (snapshot.hasData) {
+        // User is signed in
+        return CommonScreenSelector();
+      } else {
+        // User is not signed in
+        return LoginPage();
+      }
+    },
+  );
+}
+
 }

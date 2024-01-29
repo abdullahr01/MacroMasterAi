@@ -12,7 +12,20 @@
           "package_name": "com.example.macromasterai"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1039971181082-5da0r03edg2vviom77j445lik02931qn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.macromasterai",
+            "certificate_hash": "49e6bf943dd5a951ff377672e19fde24be0d5736"
+          }
+        },
+        {
+          "client_id": "1039971181082-nius2q2kvs626ptkpjh9n7iqmkph1drt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBscx8jkcA7D4w4w7HZDX2APUekXefz1iA"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039971181082-nius2q2kvs626ptkpjh9n7iqmkph1drt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

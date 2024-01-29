@@ -1,9 +1,13 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:macromasterai/Auth/SignInScreen.dart';
+import 'package:macromasterai/CommonScreen.dart';
 import 'package:macromasterai/Constants/InputTextField.dart';
 import 'package:macromasterai/Constants/SquareTiles.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,81 +19,146 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String? errorMessage = '';
   bool isLogin = false;
-  
+  String userEmail = "";
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-void loginTheUser() async {
-  // Show loading circle
-  showDialog(
-    barrierDismissible: false,
-    context: context,
-    builder: (context) {
-      return const Center(child: CircularProgressIndicator());
-    },
-  );
-
-  try {
-    // Login the user
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text,
-      password: passwordController.text,
+  void loginTheUser() async {
+    // Show loading circle
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return const Center(child: CircularProgressIndicator());
+      },
     );
-  } on FirebaseAuthException catch (e) {
-    // Dismiss the loading circle
-    Navigator.of(context, rootNavigator: true).pop();
 
-    // Handling different FirebaseAuthException error codes
-    String errorMessage;
-    switch (e.code) {
-      case 'user-not-found':
-        errorMessage = 'No user found for that email.';
-        break;
-      case 'invalid-credential':
-        errorMessage = 'Wrong password or username provided for that user.';
-        break;
-      // case 'invalid-email':
-      //   errorMessage = 'Email address is invalid.';
-      //   break;
-      // Add more cases for different error codes as needed
+    try {
+      // Login the user
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      // Dismiss the loading circle
+      Navigator.of(context, rootNavigator: true).pop();
 
-      default:
-        // Handle unexpected error codes
-        errorMessage = 'An unexpected error occurred. Please try again.';
-        break;
-    }
-     print("FirebaseAuthException caught: ${e.code}");
-    showSnackbar(errorMessage);
-  } finally {
-    if (mounted) {
-      // Check if the loading circle is still present, then dismiss it
-      if (Navigator.canPop(context)) {
-        Navigator.pop(context);
+      // Handling different FirebaseAuthException error codes
+      String errorMessage;
+      switch (e.code) {
+        case 'user-not-found':
+          errorMessage = 'No user found for that email.';
+          break;
+        case 'invalid-credential':
+          errorMessage = 'Wrong password or username provided for that user.';
+          break;
+        // case 'invalid-email':
+        //   errorMessage = 'Email address is invalid.';
+        //   break;
+        // Add more cases for different error codes as needed
+
+        default:
+          // Handle unexpected error codes
+          errorMessage = 'An unexpected error occurred. Please try again.';
+          break;
+      }
+      print("FirebaseAuthException caught: ${e.code}");
+      showSnackbar(errorMessage);
+    } finally {
+      if (mounted) {
+        // Check if the loading circle is still present, then dismiss it
+        if (Navigator.canPop(context)) {
+          Navigator.pop(context);
+        }
       }
     }
   }
-}
 
-void showSnackbar(String errorMessage) {
-  final snackBar = SnackBar(
-    content: Text(errorMessage),
-    duration: const Duration(seconds: 3),
-  );
+  void showSnackbar(String errorMessage) {
+    final snackBar = SnackBar(
+      content: Text(errorMessage),
+      duration: const Duration(seconds: 3),
+    );
 
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-}
-
-
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   Widget _errorMessage() {
     return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
   }
 
-  
+  googleButtonClick() {
+    signInWithGoogle().then((user) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const CommonScreenSelector()));
+    });
+  }
+
+  signInWithGoogle() async {
+    //Sign in process
+    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+
+    //obtain auth detail from user
+    final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+
+    //create credential for the user
+    final credential = GoogleAuthProvider.credential(
+        accessToken: gAuth.accessToken, idToken: gAuth.idToken);
+
+    //finally lets sign in
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  Future<void> signInWithFacebook() async {
+    try {
+      final LoginResult loginResult =
+          await FacebookAuth.instance.login(permissions: [
+        'email',
+      ]);
+
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+      final userData = await FacebookAuth.instance.getUserData();
+
+      userEmail = userData["email"];
+
+      await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      switch (e.code) {
+        case 'user-not-found':
+          errorMessage = 'No user found for that email.';
+          break;
+        case 'invalid-credential':
+          errorMessage = 'Wrong password or username provided for that user.';
+          break;
+        // case 'invalid-email':
+        //   errorMessage = 'Email address is invalid.';
+        //   break;
+        // Add more cases for different error codes as needed
+
+        default:
+          // Handle unexpected error codes
+          errorMessage = 'An unexpected error occurred. Please try again.';
+          break;
+      }
+      print("FirebaseAuthException caught: ${e.code}");
+      showSnackbar(errorMessage);
+    }
+  }
+
+  facebookButtonClick() {
+    signInWithFacebook().then((user) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const CommonScreenSelector()));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -233,22 +302,25 @@ void showSnackbar(String errorMessage) {
               const SizedBox(
                 height: 20,
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //Google
                   SquareTile(
-                      ImagePath: 'images/googlepng-removebg-preview.png'),
-                  SizedBox(
+                    ImagePath: 'images/googlepng-removebg-preview.png',
+                    onTap: () => googleButtonClick(),
+                  ),
+                  const SizedBox(
                     width: 15,
                   ),
                   SquareTile(
-                      ImagePath: 'images/facebookpng-removebg-preview.png')
+                    ImagePath: 'images/facebookpng-removebg-preview.png',
+                    onTap: () => facebookButtonClick(),
+                  )
                 ],
               ),
               _errorMessage(),
             ],
-
           ),
         ),
       ),
