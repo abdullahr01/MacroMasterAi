@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/CustomSlider.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 
 class Details extends StatefulWidget {
   const Details({super.key});
@@ -16,10 +17,12 @@ class _DetailsState extends State<Details> {
 
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     double totalCalories = _sliderValue + _sliderValue2 + _sliderValue3;
     return Scaffold(
+      backgroundColor: const Color(0xfff9f9f9),
       body: Padding(
-        padding: const EdgeInsets.only(top: 48, right: 8, left: 8),
+        padding: EdgeInsets.only(top: widgetHeight(48), right: widgetWidth(15), left: widgetHeight(15)),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -73,60 +76,60 @@ class _DetailsState extends State<Details> {
                 height: 15,
               ),
               SizedBox(
-                height: 220,
-                width: 220,
+                height: widgetHeight(270),
+                width: widgetWidth(270),
                 child: Image.asset(
                   'images/ham-leaf-vegetable-salad-cucumber-cucumber-salad-with-ham-bf6ff775745b753bae564c0a9f96a118 1.png',
                 ),
               ),
-              const SizedBox(
-                height: 25,
+              SizedBox(
+                height: widgetHeight(9),
               ),
-              const Padding(
-                padding: EdgeInsets.only(right: 140),
-                child: PoppinsTextStyle(
+              Padding(
+                padding: EdgeInsets.only(right: widgetWidth(150)),
+                child: const PoppinsTextStyle(
                     text: 'Cheese & avocado salad',
                     textSize: 17,
                     textColor: Colors.black,
                     isBold: true),
               ),
-              const SizedBox(
-                height: 1,
+              SizedBox(
+                height: widgetHeight(1),
               ),
-              const Padding(
-                padding: EdgeInsets.only(right: 149),
-                child: PoppinsTextStyle(
+              Padding(
+                padding: EdgeInsets.only(right: widgetWidth(165)),
+                child: const PoppinsTextStyle(
                     text: 'High protein main meal',
                     textSize: 17,
                     textColor: Colors.grey,
                     isBold: false),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: widgetHeight(29),
               ),
               Stack(
                 children: [
                   Container(
-                    height: 430,
-                    width: 355,
+                    height: widgetHeight(650),
+                    width: widgetWidth(386),
                     decoration: BoxDecoration(
                         // color: const Color(0xffffffff),
                         color: const Color(0xffffffff),
                         borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(right: 200, top: 13),
-                          child: PoppinsTextStyle(
+                        Padding(
+                          padding: EdgeInsets.only(right: widgetWidth(225), top: widgetHeight(20)),
+                          child: const PoppinsTextStyle(
                               text: 'For 1 portion',
                               textSize: 17,
                               textColor: Colors.black,
                               isBold: true),
                         ),
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(
-                              right: 30, top: 15, left: 24),
-                          child: Row(
+                              right: widgetWidth(10), top: widgetHeight(19), left: widgetWidth(25)),
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               PoppinsTextStyle(
@@ -142,8 +145,8 @@ class _DetailsState extends State<Details> {
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: widgetHeight(20),
                         ),
                         SliderTheme(
                           data: SliderTheme.of(context).copyWith(
@@ -172,10 +175,10 @@ class _DetailsState extends State<Details> {
                             max: 50,
                           ),
                         ),
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(
-                              right: 30, top: 15, left: 23),
-                          child: Row(
+                              right: widgetWidth(10), top: widgetHeight(19), left: widgetWidth(25)),
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               PoppinsTextStyle(
@@ -191,8 +194,8 @@ class _DetailsState extends State<Details> {
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: widgetHeight(20),
                         ),
                         SliderTheme(
                           data: SliderTheme.of(context).copyWith(
@@ -221,10 +224,10 @@ class _DetailsState extends State<Details> {
                             max: 50,
                           ),
                         ),
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(
-                              right: 30, top: 15, left: 28),
-                          child: Row(
+                              right: widgetWidth(10), top: widgetHeight(19), left: widgetWidth(25)),
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               PoppinsTextStyle(
@@ -240,8 +243,8 @@ class _DetailsState extends State<Details> {
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: widgetHeight(20),
                         ),
                         SliderTheme(
                           data: SliderTheme.of(context).copyWith(
@@ -270,13 +273,13 @@ class _DetailsState extends State<Details> {
                             max: 50,
                           ),
                         ),
-                        const SizedBox(
-                          height: 30,
+                        SizedBox(
+                          height: widgetHeight(41),
                         ),
                         Container(
                             margin: const EdgeInsets.only(left: 10),
-                            height: 50,
-                            width: 270,
+                            height: widgetHeight(70),
+                            width: widgetWidth(358),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
                                 color: const Color(0xfff2f2f2)),
@@ -310,10 +313,10 @@ class _DetailsState extends State<Details> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 240, top: 70),
+                    padding: EdgeInsets.only(left: widgetWidth(260), top: widgetHeight(100)),
                     child: Container(
-                      height: 280,
-                      width: 7,
+                      height: widgetHeight(410),
+                      width: widgetWidth(8),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: const Color(0xffeb0000)),

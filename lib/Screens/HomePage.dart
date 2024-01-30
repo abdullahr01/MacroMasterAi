@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/FoodCard.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 import 'package:macromasterai/Screens/ChatBot.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,10 +29,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return Scaffold(
       backgroundColor: const Color(0xfff9f9f9),
       body: Padding(
-        padding: const EdgeInsets.only(top: 35, right: 10, left: 10),
+        padding: EdgeInsets.only(top: widgetHeight(48), right: widgetWidth(15), left: widgetHeight(15)),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -82,27 +84,27 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: widgetHeight(30),
               ),
               // Search bar
               Padding(
-                padding: const EdgeInsets.only(
-                    top: 12, bottom: 12, left: 8, right: 8),
+                padding: EdgeInsets.only(
+                    top: widgetHeight(18), bottom: widgetHeight(18), left: widgetWidth(10), right: widgetWidth(10)),
                 child: TextField(
                   controller: _searchController,
                   decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 13),
+                      contentPadding:  EdgeInsets.symmetric(
+                          horizontal: widgetHeight(30), vertical: widgetWidth(13)),
                       hintText: 'Search',
                       hintStyle:
                           const TextStyle(fontSize: 20, color: Colors.grey),
                       suffixIcon: Padding(
-                        padding: const EdgeInsets.only(right: 10),
+                        padding: EdgeInsets.only(right: widgetWidth(8)),
                         child: GestureDetector(
                             child: Container(
-                          height: 45,
-                          width: 47,
+                          height: widgetHeight(45),
+                          width: widgetWidth(50),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
                               color: Colors.red),
@@ -137,12 +139,12 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               SizedBox(
-                height: 150,
-                width: 340,
+                height: widgetHeight(210),
+                width: widgetWidth(370),
                 child: Row(
                   children: [
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: widgetHeight(10),
                     ),
                     Expanded(
                         flex: 1,
@@ -155,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Padding(
                               padding:
-                                  const EdgeInsets.only(top: 14, right: 30),
+                                  EdgeInsets.only(top: widgetHeight(20), right: widgetWidth(30)),
                               child: Column(
                                 children: [
                                   const PoppinsTextStyle(
@@ -163,9 +165,9 @@ class _HomePageState extends State<HomePage> {
                                       textSize: 15,
                                       textColor: Colors.black,
                                       isBold: true),
-                                  const Padding(
-                                    padding: EdgeInsets.only(top: 5, left: 12),
-                                    child: Text(
+                                  Padding(
+                                    padding: EdgeInsets.only(top: widgetHeight(8), left: widgetWidth(15)),
+                                    child: const Text(
                                       "Etiam in ex nec lobortis food luctus. Etiam iaculis healthy.",
                                       maxLines: 2,
                                       style: TextStyle(
@@ -176,12 +178,12 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   Padding(
                                     padding:
-                                        const EdgeInsets.only(top: 8, left: 10),
+                                        EdgeInsets.only(top: widgetHeight(10), right: widgetWidth(20)),
                                     child: GestureDetector(
                                       onTap: () {},
                                       child: Container(
-                                        height: 40,
-                                        width: 170,
+                                        height: widgetHeight(60),
+                                        width: widgetWidth(160),
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(30),
@@ -200,8 +202,8 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ))),
                     Container(
-                        height: 160,
-                        width: 120,
+                        height: widgetHeight(209),
+                        width: widgetWidth(130),
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(15),
@@ -215,22 +217,22 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(30),
               ),
-              const Padding(
-                padding: EdgeInsets.only(right: 260),
-                child: PoppinsTextStyle(
+              Padding(
+                padding: EdgeInsets.only(right: widgetWidth(280)),
+                child: const PoppinsTextStyle(
                     text: 'New Food',
                     textSize: 18,
                     textColor: Colors.black,
                     isBold: true),
               ),
-              const SizedBox(
-                height: 15,
+              SizedBox(
+                height: widgetHeight(33),
               ),
               SizedBox(
-                height: 225,
+                height: widgetHeight(320),
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 2,
@@ -261,8 +263,8 @@ class _HomePageState extends State<HomePage> {
                       );
                     }),
               ),
-              const SizedBox(
-                height: 15,
+              SizedBox(
+                height: widgetHeight(30),
               ),
               const Padding(
                 padding: EdgeInsets.only(right: 224),
@@ -272,15 +274,15 @@ class _HomePageState extends State<HomePage> {
                     textColor: Colors.black,
                     isBold: true),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(19),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15),
+                padding: EdgeInsets.only(left: widgetWidth(8)),
                 child: ListTile(
                   tileColor: const Color(0xffffffff),
                   leading: Container(
-                    height: 70,
+                    height: widgetHeight(120),
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(50)),
                     child: Image.asset('images/Mask3.png'),
@@ -290,18 +292,18 @@ class _HomePageState extends State<HomePage> {
                       textSize: 14,
                       textColor: Colors.black,
                       isBold: true),
-                  subtitle: const Column(
+                  subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PoppinsTextStyle(
+                      const PoppinsTextStyle(
                           text: 'Nunc fringilla, nibh ac malesu.',
                           textSize: 13,
                           textColor: Colors.grey,
                           isBold: false),
                       SizedBox(
-                        height: 4,
+                        height: widgetHeight(4),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.only(right: 7),
                         child: Row(
                           children: [

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/ListImages.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 import 'package:macromasterai/Screens/CalculateOrScd.dart';
 import 'package:macromasterai/Screens/UserProfileDetails.dart';
 
@@ -21,10 +22,11 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return Scaffold(
       backgroundColor: const Color(0xfff9f9f9),
       body: Padding(
-        padding: const EdgeInsets.only(top: 35, right: 10, left: 10),
+        padding: EdgeInsets.only(top: widgetHeight(48), right: widgetWidth(15), left: widgetHeight(15)),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -74,8 +76,8 @@ class _ProfileState extends State<Profile> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 40,
+              SizedBox(
+                height: widgetHeight(40),
               ),
               GestureDetector(
                 onTap: () {
@@ -83,15 +85,15 @@ class _ProfileState extends State<Profile> {
                       builder: (context) => const Schedule()));
                 },
                 child: Container(
-                  height: 180,
-                  width: 370,
+                  height: widgetHeight(264),
+                  width: widgetWidth(386),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white),
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(right: 20, left: 23),
+                        padding: EdgeInsets.only(right: widgetWidth(23), left: widgetWidth(23)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -101,10 +103,10 @@ class _ProfileState extends State<Profile> {
                                 textColor: Colors.black,
                                 isBold: true),
                             Padding(
-                              padding: const EdgeInsets.only(top: 10),
+                              padding: EdgeInsets.only(top: widgetHeight(20)),
                               child: Container(
-                                height: 35,
-                                width: 90,
+                                height: widgetHeight(45),
+                                width: widgetWidth(90),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
                                     color: Colors.red),
@@ -120,9 +122,9 @@ class _ProfileState extends State<Profile> {
                           ],
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 250),
-                        child: PoppinsTextStyle(
+                      Padding(
+                        padding: EdgeInsets.only(right: widgetHeight(380)),
+                        child: const PoppinsTextStyle(
                             text: '54 kg',
                             textSize: 22,
                             textColor: Colors.grey,
@@ -132,16 +134,16 @@ class _ProfileState extends State<Profile> {
                         height: 7,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 20),
+                        padding: EdgeInsets.only(left: widgetWidth(10)),
                         child: Container(
-                          height: 90,
-                          width: 400,
+                          height: widgetHeight(140),
+                          width: widgetWidth(450),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.white),
                           child: LineChart(LineChartData(
                               minX: 0,
-                              maxX: 9,
+                              maxX: 10,
                               minY: 0,
                               maxY: 4,
                               titlesData: const FlTitlesData(show: false),
@@ -165,6 +167,9 @@ class _ProfileState extends State<Profile> {
                                       const FlSpot(7.4, 2.5),
                                       const FlSpot(7.6, 1.5),
                                       const FlSpot(8, 1.7),
+                                      const FlSpot(9, 1),
+                                      const FlSpot(9.4, 1.5),
+                                      const FlSpot(9.7, 1.2)
                                     ],
                                     isCurved: true,
                                     color: Colors.red,
@@ -184,14 +189,14 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(16),
               ),
               Swiper(
-                itemHeight: 200,
-                itemWidth: 400,
+                itemHeight: widgetHeight(284),
+                itemWidth: widgetWidth(400),
                 loop: true,
-                duration: 1200,
+                duration: 120,
                 scrollDirection: Axis.vertical,
                 itemCount: 2,
                 itemBuilder: (BuildContext context, int index) {
@@ -217,26 +222,26 @@ class _ProfileState extends State<Profile> {
                 viewportFraction: 0.8,
                 scale: 0.9,
               ),
-              const Padding(
-                padding: EdgeInsets.only(right: 200, top: 20),
-                child: PoppinsTextStyle(
+              Padding(
+                padding: EdgeInsets.only(right: widgetWidth(200), top: widgetHeight(44)),
+                child: const PoppinsTextStyle(
                     text: 'Payment Methods',
                     textSize: 17,
                     textColor: Colors.black,
                     isBold: true),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: widgetHeight(19)),
               Swiper(
-                itemHeight: 200,
-                itemWidth: 400,
+                itemHeight: widgetHeight(300),
+                itemWidth: widgetWidth(450),
                 loop: true,
-                duration: 1200,
+                duration: 120,
                 scrollDirection: Axis.vertical,
                 // itemCount: 2,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                    width: 400,
-                    height: 400,
+                    width: widgetWidth(450),
+                    height: widgetHeight(400),
                     decoration: BoxDecoration(
                       image:
                           DecorationImage(image: AssetImage(imagePath[index])),
@@ -266,8 +271,8 @@ class MyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        height: 170,
-        width: 370,
+        height: widgetHeight(284),
+        width: widgetWidth(386),
         // color: const Color(0xffE2F4F0),
         color: color,
         child: Row(
@@ -275,33 +280,33 @@ class MyCard extends StatelessWidget {
           children: [
             Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(right: 54, top: 30),
-                  child: PoppinsTextStyle(
+                Padding(
+                  padding: EdgeInsets.only(right: widgetWidth(54), top: widgetHeight(30)),
+                  child: const PoppinsTextStyle(
                       text: 'Next Workout',
                       textSize: 15,
                       textColor: Colors.black,
                       isBold: true),
                 ),
-                const SizedBox(
-                  height: 8,
+                SizedBox(
+                  height: widgetHeight(8),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 12),
+                  padding: EdgeInsets.only(left: widgetWidth(12)),
                   child: PoppinsTextStyle(
                       text: text,
                       textSize: 19,
                       textColor: Colors.grey,
                       isBold: true),
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: widgetHeight(30),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 75),
+                  padding: EdgeInsets.only(right: widgetWidth(75)),
                   child: Container(
-                    height: 35,
-                    width: 80,
+                    height: widgetHeight(40),
+                    width: widgetWidth(90),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(40),
                         color: Colors.red),
@@ -319,8 +324,8 @@ class MyCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 10),
               child: SizedBox(
-                height: 150,
-                width: 100,
+                height: widgetHeight(200),
+                width: widgetWidth(100),
                 child: Image.asset(
                   yogaImage,
                   fit: BoxFit.cover,

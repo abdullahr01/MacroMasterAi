@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:macromasterai/Constants/Constants.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 
 class FoodCard extends StatelessWidget {
   final String imagePath;
@@ -17,8 +18,8 @@ class FoodCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 225,
-      width: 220,
+      height: widgetHeight(225),
+      width: widgetWidth(220),
       decoration: BoxDecoration(
         color: const Color(0xffffffff),
         borderRadius: BorderRadius.circular(25),
@@ -28,10 +29,10 @@ class FoodCard extends StatelessWidget {
           Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 8),
+                padding: EdgeInsets.only(top: widgetHeight(19)),
                 child: Container(
-                  height: 140,
-                  width: 170,
+                  height: widgetHeight(200),
+                  width: widgetWidth(210),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                   ),
@@ -39,10 +40,10 @@ class FoodCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 130, top: 20),
+                padding: EdgeInsets.only(left: widgetWidth(150), top: widgetHeight(30)),
                 child: Container(
-                  height: 30,
-                  width: 30,
+                  height: widgetHeight(50),
+                  width: widgetWidth(40),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -61,11 +62,11 @@ class FoodCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 5,
+          SizedBox(
+            height: widgetHeight(10),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 66),
+            padding: EdgeInsets.only(right: widgetWidth(70)),
             child: PoppinsTextStyle(
                 text: name,
                 textSize: 15,
@@ -73,7 +74,7 @@ class FoodCard extends StatelessWidget {
                 isBold: true),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 14, top: 4),
+            padding: EdgeInsets.only(left: widgetWidth(14), top: widgetHeight(4)),
             child: Row(
               children: [
                 PoppinsTextStyle(
@@ -81,8 +82,8 @@ class FoodCard extends StatelessWidget {
                     textSize: 17,
                     textColor: Colors.grey,
                     isBold: false),
-                const SizedBox(
-                  width: 30,
+                SizedBox(
+                  width: widgetWidth(30),
                 ),
                 const Icon(
                   Icons.local_fire_department_outlined,

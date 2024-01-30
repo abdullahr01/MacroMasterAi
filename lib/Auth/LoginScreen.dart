@@ -163,20 +163,20 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+          padding: EdgeInsets.symmetric(horizontal: widgetWidth(16), vertical: widgetHeight(30)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Hero(
                 tag: 'MacroAi',
                 child: SizedBox(
-                  height: 170,
-                  width: 170,
+                  height: widgetHeight(270),
+                  width: widgetWidth(270),
                   child: Image.asset('images/macromsaster.png.png'),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(30),
               ),
               MyTextField(
                 controller: emailController,
@@ -184,8 +184,8 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: false,
                 iconTextField: const Icon(Icons.email_outlined),
               ),
-              const SizedBox(
-                height: 15,
+              SizedBox(
+                height: widgetHeight(20),
               ),
               MyTextField(
                 controller: passwordController,
@@ -193,8 +193,8 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
                 iconTextField: const Icon(Icons.fingerprint),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(20),
               ),
               GestureDetector(
                 onTap: () {
@@ -212,8 +212,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: widgetHeight(15),
               ),
               GestureDetector(
                 onTap: () {
@@ -232,8 +232,8 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.grey,
                         ),
                       ),
-                      const SizedBox(
-                        width: 5,
+                      SizedBox(
+                        width: widgetWidth(5),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -252,16 +252,16 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 40,
+              SizedBox(
+                height: widgetHeight(60),
               ),
               GestureDetector(
                 onTap: () {
                   loginTheUser();
                 },
                 child: Container(
-                  height: 50,
-                  width: 200,
+                  height: widgetHeight(70),
+                  width: widgetWidth(210),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: Colors.red,
@@ -278,11 +278,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: widgetHeight(60),
               ),
               Row(
                 children: [
@@ -299,8 +296,8 @@ class _LoginPageState extends State<LoginPage> {
                   )),
                 ],
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(40),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -310,8 +307,8 @@ class _LoginPageState extends State<LoginPage> {
                     ImagePath: 'images/googlepng-removebg-preview.png',
                     onTap: () => googleButtonClick(),
                   ),
-                  const SizedBox(
-                    width: 15,
+                  SizedBox(
+                    width: widgetWidth(20),
                   ),
                   SquareTile(
                     ImagePath: 'images/facebookpng-removebg-preview.png',

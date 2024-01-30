@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:macromasterai/Constants/InputTextField.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 
 
 class SignIn extends StatefulWidget {
@@ -79,6 +80,7 @@ void showSnackbar(String errorMessage) {
 
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -89,8 +91,8 @@ void showSnackbar(String errorMessage) {
               Hero(
                 tag: 'MacroAi',
                 child: SizedBox(
-                  height: 120,
-                  width: 120,
+                  height: widgetHeight(180),
+                  width: widgetHeight(180),
                   child: Image.asset('images/macromsaster.png.png'),
                 ),
               ),
@@ -100,35 +102,35 @@ void showSnackbar(String errorMessage) {
                 obscureText: false,
                 iconTextField: const Icon(Icons.person_outline_rounded),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: widgetHeight(16)),
               MyTextField(
                 controller: mobileNumberController,
                 labelText: "Mobile Number",
                 obscureText: false,
                 iconTextField: const Icon(Icons.phone),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: widgetHeight(16)),
               MyTextField(
                 controller: emailController,
                 labelText: "Email",
                 obscureText: false,
                 iconTextField: const Icon(Icons.email_outlined),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: widgetHeight(16)),
               MyTextField(
                 controller: passwordController,
                 labelText: "Password",
                 obscureText: true,
                 iconTextField: const Icon(Icons.fingerprint),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: widgetHeight(60)),
               GestureDetector(
                 onTap: () {
                   createTheUser();
                 },
                 child: Container(
-                  height: 50,
-                  width: 250,
+                  height: widgetHeight(80),
+                  width: widgetWidth(220),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       color: Colors.red),

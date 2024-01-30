@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:macromasterai/Constants/Constants.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 
 class ProfileMenuButton extends StatelessWidget {
   final IconData awesomeIcon;
@@ -21,7 +22,7 @@ class ProfileMenuButton extends StatelessWidget {
     return ListTile(
       tileColor: Colors.grey.withOpacity(0.03),
       onTap: onPress,
-      contentPadding: const EdgeInsets.only(left: 30, right: 30),
+      contentPadding: EdgeInsets.only(left: widgetWidth(30), right: widgetWidth(30)),
       leading: Container(
         height: 40,
         width: 40,

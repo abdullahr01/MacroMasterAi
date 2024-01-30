@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 
 
 const Color whiteContainerColor = Color(0xffffffff);
@@ -58,9 +59,9 @@ class textInTheBox extends StatelessWidget {
 class Div extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(left: 15, bottom: 10),
-      child: SizedBox(
+    return Padding(
+      padding: EdgeInsets.only(left: widgetWidth(10), bottom: widgetHeight(10)),
+      child: const SizedBox(
         height: 50,
         child: VerticalDivider(
           color: Colors.grey,

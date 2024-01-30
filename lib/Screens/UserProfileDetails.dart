@@ -3,6 +3,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:macromasterai/Auth/LoginScreen.dart';
 import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/ProfileListTile.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 import 'package:macromasterai/Screens/EditProfileScreen.dart';
 
 class UserInfoDetails extends StatefulWidget {
@@ -15,6 +16,7 @@ class UserInfoDetails extends StatefulWidget {
 class _UserInfoDetailsState extends State<UserInfoDetails> {
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return Scaffold(
       backgroundColor: const Color(0xfff9f9f9),
       appBar: AppBar(
@@ -29,14 +31,14 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 20, left: 1),
+          padding: EdgeInsets.only(top: widgetHeight(30)),
           child: Column(
             children: [
               Hero(
                 tag: 'avatarHero',
                 child: Container(
-                  height: 120,
-                  width: 120,
+                  height: widgetHeight(160),
+                  width: widgetWidth(160),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                   ),
@@ -45,8 +47,8 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: widgetHeight(10),
               ),
               const PoppinsTextStyle(
                   text: 'Alex',
@@ -58,8 +60,8 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
                   textSize: 16,
                   textColor: Colors.black,
                   isBold: false),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(30),
               ),
               GestureDetector(
                 
@@ -68,8 +70,8 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
                       builder: (context) => const EditProfile()));
                 },
                 child: Container(
-                  height: 50,
-                  width: 190,
+                  height: widgetHeight(70),
+                  width: widgetWidth(210),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(40),
                       color: Colors.red),
@@ -82,8 +84,8 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 40,
+              SizedBox(
+                height: widgetHeight(60),
               ),
               ProfileMenuButton(
                 awesomeIcon: LineAwesomeIcons.cog,
@@ -99,8 +101,8 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
                 textColor: Colors.black,
                 onPress: () {},
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(30),
               ),
               ProfileMenuButton(
                 awesomeIcon: LineAwesomeIcons.info,

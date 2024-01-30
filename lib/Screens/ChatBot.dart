@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 
 class ChatBot extends StatefulWidget {
   const ChatBot({super.key});
@@ -12,6 +13,7 @@ class _ChatBotState extends State<ChatBot> {
 
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return Scaffold(
         backgroundColor: const Color(0xfff9f9f9),
         appBar: AppBar(
@@ -72,7 +74,7 @@ class _ChatBotState extends State<ChatBot> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(top: 440),
+            padding: EdgeInsets.only(top: widgetHeight(676)),
             child: Column(
               children: [
                 TextField(

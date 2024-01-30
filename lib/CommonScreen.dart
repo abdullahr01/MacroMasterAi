@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 import 'package:macromasterai/Screens/CartPage.dart';
 import 'package:macromasterai/Screens/DetailsPage.dart';
 import 'package:macromasterai/Screens/HomePage.dart';
@@ -21,6 +22,7 @@ class _CommonScreenSelectorState extends State<CommonScreenSelector> {
   ];
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: screens[index],
@@ -36,7 +38,7 @@ class _CommonScreenSelectorState extends State<CommonScreenSelector> {
               this.index = index;
             }),
           },
-          height: 60,
+          height: widgetHeight(70),
           backgroundColor: Colors.white,
           destinations: const [
             NavigationDestination(

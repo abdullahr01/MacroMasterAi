@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:macromasterai/Constants/Constants.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class Schedule extends StatefulWidget {
@@ -42,18 +43,19 @@ class _ScheduleState extends State<Schedule> {
 
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return Scaffold(
       backgroundColor: Colors.red,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 48),
+          padding: EdgeInsets.only(top: widgetHeight(48)),
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 8),
+                    padding: EdgeInsets.only(left: widgetWidth(15)),
                     child: Container(
                       height: 40,
                       width: 40,
@@ -79,7 +81,7 @@ class _ScheduleState extends State<Schedule> {
                       textColor: Colors.white,
                       isBold: true),
                   Padding(
-                    padding: const EdgeInsets.only(right: 8),
+                    padding: EdgeInsets.only(right: widgetWidth(15)),
                     child: Container(
                       height: 40,
                       width: 40,
@@ -101,8 +103,8 @@ class _ScheduleState extends State<Schedule> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(36),
               ),
               const Padding(
                 padding: EdgeInsets.only(),
@@ -112,19 +114,19 @@ class _ScheduleState extends State<Schedule> {
                     textColor: Colors.white,
                     isBold: true),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(19),
               ),
               Stack(
                 children: [
                   Container(
-                    height: 80,
-                    width: 365,
+                    height: widgetHeight(110),
+                    width: widgetHeight(550),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 25, top: 10),
+                      padding: EdgeInsets.only(left: widgetWidth(25), top: widgetHeight(16)),
                       child: Row(
                         children: [
                           const textInTheBox(
@@ -132,16 +134,16 @@ class _ScheduleState extends State<Schedule> {
                             numbers: '86',
                           ),
                           Div(),
-                          const SizedBox(
-                            width: 8,
+                          SizedBox(
+                            width: widgetWidth(8),
                           ),
                           const textInTheBox(
                             text: 'Vitamin C',
                             numbers: '94',
                           ),
                           Div(),
-                          const SizedBox(
-                            width: 5,
+                          SizedBox(
+                            width: widgetWidth(5),
                           ),
                           const textInTheBox(
                             text: 'Vitamin E',
@@ -153,11 +155,11 @@ class _ScheduleState extends State<Schedule> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(30),
               ),
               Container(
-                height: 620,
+                height: widgetHeight(940),
                 width: double.infinity,
                 decoration: const BoxDecoration(
                     color: Colors.white,
@@ -167,12 +169,12 @@ class _ScheduleState extends State<Schedule> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(
-                        top: 20,
+                      padding: EdgeInsets.only(
+                        top: widgetHeight(30),
                       ),
                       child: Container(
-                        height: 60,
-                        width: 360,
+                        height: widgetHeight(80),
+                        width: widgetWidth(386),
                         decoration: BoxDecoration(
                             color: const Color(0xfff5f5f5),
                             borderRadius: BorderRadius.circular(30)),
@@ -180,24 +182,24 @@ class _ScheduleState extends State<Schedule> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RadioButtonGroup('Vitamin', 1),
-                            const SizedBox(
-                              width: 10,
+                            SizedBox(
+                              width: widgetWidth(10),
                             ),
                             RadioButtonGroup('Nutrition', 2),
-                            const SizedBox(
-                              width: 10,
+                            SizedBox(
+                              width: widgetWidth(10),
                             ),
                             RadioButtonGroup('Minerals', 3),
                           ],
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: widgetHeight(30),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      child: Row(
+                    Padding(
+                      padding: EdgeInsets.only(left: widgetWidth(15), right: widgetWidth(15)),
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           PoppinsTextStyle(
@@ -213,12 +215,12 @@ class _ScheduleState extends State<Schedule> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: widgetHeight(10),
                     ),
                     SizedBox(
-                      height: 480,
-                      width: 375,
+                      height: widgetHeight(740),
+                      width: widgetWidth(400),
                       child: SfCalendar(
                         headerHeight: 50,
                         view: CalendarView.day,

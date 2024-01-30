@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/InputTextField.dart';
+import 'package:macromasterai/Constants/utils/dimensions.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -18,6 +19,7 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return Scaffold(
       backgroundColor: const Color(0xfff9f9f9),
       appBar: AppBar(
@@ -32,14 +34,14 @@ class _EditProfileState extends State<EditProfile> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
+          padding: EdgeInsets.only(top: widgetHeight(30), left: widgetWidth(30), right: widgetWidth(30)),
           child: Column(
             children: [
               Stack(
                 children: [
                   Container(
-                    height: 120,
-                    width: 120,
+                    height: widgetHeight(180),
+                    width: widgetWidth(180),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
                     ),
@@ -48,8 +50,8 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                   ),
                   Positioned(
-                    right: 0,
-                    bottom: 0,
+                    right: 30,
+                    bottom: 5,
                     child: Container(
                       height: 35,
                       width: 35,
@@ -64,8 +66,8 @@ class _EditProfileState extends State<EditProfile> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(30),
               ),
               MyTextField(
                 controller: editNameController,
@@ -73,29 +75,29 @@ class _EditProfileState extends State<EditProfile> {
                 obscureText: false,
                 iconTextField: const Icon(Icons.person_outline_rounded),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: widgetHeight(15)),
               MyTextField(
                 controller: editMobileNumberController,
                 labelText: "Mobile Number",
                 obscureText: false,
                 iconTextField: const Icon(Icons.phone),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: widgetHeight(15)),
               MyTextField(
                 controller: editEmailController,
                 labelText: "Email",
                 obscureText: false,
                 iconTextField: const Icon(Icons.email_outlined),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: widgetHeight(15)),
               MyTextField(
                 controller: editPasswordController,
                 labelText: "Password",
                 obscureText: true,
                 iconTextField: const Icon(Icons.fingerprint),
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: widgetHeight(40),
               ),
               GestureDetector(
                 onTap: () {
@@ -103,8 +105,8 @@ class _EditProfileState extends State<EditProfile> {
                       builder: (context) => const EditProfile()));
                 },
                 child: Container(
-                  height: 50,
-                  width: 270,
+                  height: widgetHeight(80),
+                  width: widgetWidth(300),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(40),
                       color: Colors.red),
@@ -117,18 +119,18 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(30),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 70, right: 70),
-                child: Divider(
+              Padding(
+                padding: EdgeInsets.only(left: widgetWidth(90), right: widgetWidth(90)),
+                child: const Divider(
                   height: 10,
                   thickness: 2,
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: widgetHeight(30),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -144,12 +146,12 @@ class _EditProfileState extends State<EditProfile> {
                       builder: (context) => const EditProfile()));
                 },
                 child: Container(
-                  height: 50,
-                  width: 70,
+                  height: widgetHeight(70),
+                  width: widgetWidth(80),
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.red, width: 5),
+                    // border: Border.all(color: Colors.red, width: 5),
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.redAccent),
+                      color: Colors.red),
                   child: const Center(
                     child: PoppinsTextStyle(
                         text: 'Delete',
