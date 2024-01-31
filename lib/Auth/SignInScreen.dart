@@ -18,6 +18,7 @@ class _SignInState extends State<SignIn> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final mobileNumberController = TextEditingController();
+  final cityController = TextEditingController();
 
   late String errorMessage;
 
@@ -48,6 +49,7 @@ class _SignInState extends State<SignIn> {
         "PhoneNumber": mobileNumberController.text,
         "Email": emailController.text,
         "Password": passwordController.text,
+        "City": cityController.text
       });
       }
       else {
@@ -144,6 +146,13 @@ class _SignInState extends State<SignIn> {
               ),
               SizedBox(height: widgetHeight(16)),
               MyTextField(
+                controller: ageController,
+                labelText: "City",
+                obscureText: false,
+                iconTextField: const Icon(Icons.location_city_rounded),
+              ),
+              SizedBox(height: widgetHeight(16)),
+              MyTextField(
                 controller: emailController,
                 labelText: "Email",
                 obscureText: false,
@@ -156,6 +165,7 @@ class _SignInState extends State<SignIn> {
                 obscureText: true,
                 iconTextField: const Icon(Icons.fingerprint),
               ),
+              
               SizedBox(height: widgetHeight(60)),
               GestureDetector(
                 onTap: () {
