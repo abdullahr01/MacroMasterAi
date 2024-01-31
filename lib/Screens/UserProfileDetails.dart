@@ -1,10 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:macromasterai/Auth/LoginScreen.dart';
 import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/ProfileListTile.dart';
 import 'package:macromasterai/Constants/utils/dimensions.dart';
 import 'package:macromasterai/Screens/EditProfileScreen.dart';
+import 'package:macromasterai/Screens/billing_transaction.dart';
+import 'package:macromasterai/Screens/info_about.dart';
 
 class UserInfoDetails extends StatefulWidget {
   const UserInfoDetails({super.key});
@@ -14,6 +19,48 @@ class UserInfoDetails extends StatefulWidget {
 }
 
 class _UserInfoDetailsState extends State<UserInfoDetails> {
+  String? name;
+  String? email;
+
+  void signoutTheUser() async {
+    await GoogleSignIn().signOut();
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              LoginPage()), // Replace with your login screen widget
+    );
+  }
+
+  fetch() async {
+    User? userInfo = FirebaseAuth.instance.currentUser;
+    if (userInfo != null) {
+      try {
+        DocumentSnapshot userData = await FirebaseFirestore.instance
+            .collection("Users")
+            .doc(userInfo.uid)
+            .get();
+        Map<String, dynamic>? data = userData.data() as Map<String, dynamic>?;
+        if (data != null) {
+          setState(() {
+            email = data["Email"];
+            name = data["Name"];
+          });
+        }
+      } catch (e) {
+        //
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetch();
+  }
+
   @override
   Widget build(BuildContext context) {
     initMediaQuerySize(context);
@@ -22,7 +69,11 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        leading: const Icon(Icons.arrow_back),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back)),
         title: const PoppinsTextStyle(
             text: 'Profile',
             textSize: 18,
@@ -50,13 +101,13 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
               SizedBox(
                 height: widgetHeight(10),
               ),
-              const PoppinsTextStyle(
-                  text: 'Alex',
+              PoppinsTextStyle(
+                  text: name ?? 'Loading...',
                   textSize: 20,
                   textColor: Colors.black,
                   isBold: true),
-              const PoppinsTextStyle(
-                  text: 'alex01@gmail.com',
+              PoppinsTextStyle(
+                  text: email ?? 'Loading...',
                   textSize: 16,
                   textColor: Colors.black,
                   isBold: false),
@@ -64,7 +115,6 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
                 height: widgetHeight(30),
               ),
               GestureDetector(
-                
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const EditProfile()));
@@ -77,7 +127,7 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
                       color: Colors.red),
                   child: const Center(
                     child: PoppinsTextStyle(
-                        text: 'Edit Profile',
+                        text: 'Profile Details',
                         textSize: 16,
                         textColor: Colors.white,
                         isBold: true),
@@ -99,7 +149,10 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
                 text: 'Billing Details',
                 endIcon: true,
                 textColor: Colors.black,
-                onPress: () {},
+                onPress: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const TransactionHistory()));
+                },
               ),
               SizedBox(
                 height: widgetHeight(30),
@@ -109,7 +162,10 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
                 text: 'Information',
                 endIcon: true,
                 textColor: Colors.black,
-                onPress: () {},
+                onPress: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const AboutOurSection()));
+                },
               ),
               ProfileMenuButton(
                 awesomeIcon: LineAwesomeIcons.alternate_sign_out,
@@ -117,8 +173,7 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
                 endIcon: false,
                 textColor: Colors.red,
                 onPress: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const LoginPage()));
+                  signoutTheUser();
                 },
               ),
             ],

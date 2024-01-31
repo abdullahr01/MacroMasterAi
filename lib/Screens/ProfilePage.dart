@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
@@ -15,10 +17,40 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+
+  String? age;
+
   final List<Color> gradientColor = [
     const Color(0xffFF0000),
     const Color(0xffffffff)
   ];
+
+   fetch() async {
+    User? userInfo = FirebaseAuth.instance.currentUser;
+    if (userInfo != null) {
+      try {
+        DocumentSnapshot userData = await FirebaseFirestore.instance
+            .collection("Users")
+            .doc(userInfo.uid)
+            .get();
+        Map<String, dynamic>? data = userData.data() as Map<String, dynamic>?;
+        if (data != null) {
+          setState(() {
+            age = data["Age"];
+          });
+        }
+      } catch (e) {
+        //
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetch();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,8 +156,8 @@ class _ProfileState extends State<Profile> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(right: widgetHeight(380)),
-                        child: const PoppinsTextStyle(
-                            text: '54 kg',
+                        child: PoppinsTextStyle(
+                            text: '${age} kg',
                             textSize: 22,
                             textColor: Colors.grey,
                             isBold: false),

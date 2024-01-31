@@ -3,6 +3,8 @@ import 'package:macromasterai/Constants/utils/dimensions.dart';
 
 
 const Color whiteContainerColor = Color(0xffffffff);
+const Color appBackgroundColor = Color(0xfff9f9f9);
+const Color appThemeColor = Colors.red;
 
 
 
@@ -32,6 +34,34 @@ class PoppinsTextStyle extends StatelessWidget{
   );
   }
 }
+
+class MontSerratTextStyle extends StatelessWidget{
+  final bool isBold;
+  final String text;
+  final double textSize;
+  final Color textColor;
+
+  const MontSerratTextStyle({super.key, 
+    required this.text,
+    required this.textSize,
+    required this.textColor,
+    required this.isBold
+  });
+
+  @override
+  Widget build (BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: textSize,
+        color: textColor,
+        fontFamily: 'Montserrat',
+        fontWeight: (isBold==true) ? FontWeight.bold : FontWeight.normal
+      ),
+  );
+  }
+}
+
 
 
 class textInTheBox extends StatelessWidget {

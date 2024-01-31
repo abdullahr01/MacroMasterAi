@@ -38,7 +38,7 @@ class _CommonScreenSelectorState extends State<CommonScreenSelector> {
               this.index = index;
             }),
           },
-          height: widgetHeight(70),
+          height: widgetHeight(80),
           backgroundColor: Colors.white,
           destinations: const [
             NavigationDestination(

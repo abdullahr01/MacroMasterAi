@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:macromasterai/Auth/LoginScreen.dart';
 import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/FoodCard.dart';
 import 'package:macromasterai/Constants/utils/dimensions.dart';
@@ -19,6 +20,10 @@ class _HomePageState extends State<HomePage> {
   void signoutTheUser() async {
     await GoogleSignIn().signOut();
     await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()), // Replace with your login screen widget
+    );
   }
 
   @override
@@ -49,8 +54,8 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(60)),
                     child: IconButton(
                       icon: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.black,
+                        Icons.logout_outlined,
+                        color: Colors.red,
                         size: 20,
                       ),
                       onPressed: () {
@@ -58,29 +63,37 @@ class _HomePageState extends State<HomePage> {
                       },
                     ),
                   ),
-                  const PoppinsTextStyle(
-                      text: 'Home',
-                      textSize: 20,
-                      textColor: Colors.black,
-                      isBold: true),
-                  Container(
-                    height: 40,
-                    width: 40,
-                    // color: Colors.white,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(60)),
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.sentiment_neutral_rounded,
-                        color: Colors.red,
-                        size: 22,
+                  Padding(
+                    padding: EdgeInsets.only(left: widgetWidth(40)),
+                    child: const PoppinsTextStyle(
+                        text: 'Home',
+                        textSize: 20,
+                        textColor: Colors.black,
+                        isBold: true),
+                  ),
+                  Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const ChatBot()));
+                        },
+                        child: Container(
+                          height: 35,
+                          width: 35,
+                          // color: Colors.white,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(60)),
+                          child: Image.asset('images/openai-removebg-preview.png')
+                        ),
                       ),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ChatBot()));
-                      },
-                    ),
+                      const PoppinsTextStyle(
+                        text: "MacroMaster AI",
+                        textSize: 10,
+                        textColor: Colors.grey,
+                        isBold: true)
+                    ],
                   ),
                 ],
               ),

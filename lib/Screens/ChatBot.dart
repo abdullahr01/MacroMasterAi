@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:macromasterai/Constants/utils/dimensions.dart';
+import 'package:macromasterai/Screens/UserProfileDetails.dart';
 
 class ChatBot extends StatefulWidget {
   const ChatBot({super.key});
@@ -43,14 +44,24 @@ class _ChatBotState extends State<ChatBot> {
                 color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
           ),
           actions: [
-            Container(
-                height: 40,
-                width: 40,
-                // color: Colors.white,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(60)),
-                child: Image.asset('images/avatar-removebg-preview.png')),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          UserInfoDetails()), // Replace with your login screen widget
+                );
+              },
+              child: Container(
+                  height: 40,
+                  width: 40,
+                  // color: Colors.white,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(60)),
+                  child: Image.asset('images/avatar-removebg-preview.png')),
+            ),
             Container(
               height: 40,
               width: 40,
@@ -65,8 +76,8 @@ class _ChatBotState extends State<ChatBot> {
                   size: 20,
                 ),
                 onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => const ChatBot()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const ChatBot()));
                 },
               ),
             ),

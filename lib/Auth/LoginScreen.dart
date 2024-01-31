@@ -73,6 +73,10 @@ class _LoginPageState extends State<LoginPage> {
         }
       }
     }
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => CommonScreenSelector()), // Replace with your login screen widget
+    );
   }
 
   void showSnackbar(String errorMessage) {
