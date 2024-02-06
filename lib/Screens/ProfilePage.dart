@@ -19,6 +19,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
 
   String? age;
+  String? weight;
 
   final List<Color> gradientColor = [
     const Color(0xffFF0000),
@@ -37,6 +38,7 @@ class _ProfileState extends State<Profile> {
         if (data != null) {
           setState(() {
             age = data["Age"];
+            weight = data["Weight"];
           });
         }
       } catch (e) {
@@ -117,7 +119,7 @@ class _ProfileState extends State<Profile> {
                       builder: (context) => const Schedule()));
                 },
                 child: Container(
-                  height: widgetHeight(264),
+                  height: widgetHeight(273),
                   width: widgetWidth(386),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -130,21 +132,21 @@ class _ProfileState extends State<Profile> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const PoppinsTextStyle(
-                                text: 'Weight',
+                                text: 'Age',
                                 textSize: 17,
                                 textColor: Colors.black,
                                 isBold: true),
                             Padding(
-                              padding: EdgeInsets.only(top: widgetHeight(20)),
+                              padding: EdgeInsets.only(top: widgetHeight(10)),
                               child: Container(
                                 height: widgetHeight(45),
                                 width: widgetWidth(90),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
                                     color: Colors.red),
-                                child: const Center(
+                                child: Center(
                                   child: PoppinsTextStyle(
-                                      text: '-7.5 kg',
+                                      text: '$age years',
                                       textSize: 16,
                                       textColor: Colors.white,
                                       isBold: true),
@@ -155,9 +157,9 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(right: widgetHeight(380)),
+                        padding: EdgeInsets.only(right: widgetWidth(280)),
                         child: PoppinsTextStyle(
-                            text: '${age} kg',
+                            text: '$weight kg',
                             textSize: 22,
                             textColor: Colors.grey,
                             isBold: false),
@@ -168,7 +170,7 @@ class _ProfileState extends State<Profile> {
                       Padding(
                         padding: EdgeInsets.only(left: widgetWidth(10)),
                         child: Container(
-                          height: widgetHeight(140),
+                          height: widgetHeight(160),
                           width: widgetWidth(450),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
@@ -225,11 +227,11 @@ class _ProfileState extends State<Profile> {
                 height: widgetHeight(16),
               ),
               Swiper(
-                itemHeight: widgetHeight(284),
+                itemHeight: widgetHeight(264),
                 itemWidth: widgetWidth(400),
                 loop: true,
                 duration: 120,
-                scrollDirection: Axis.vertical,
+                scrollDirection: Axis.horizontal,
                 itemCount: 2,
                 itemBuilder: (BuildContext context, int index) {
                   List<Color> cardColors = [
@@ -251,8 +253,7 @@ class _ProfileState extends State<Profile> {
                   );
                 },
                 layout: SwiperLayout.STACK,
-                viewportFraction: 0.8,
-                scale: 0.9,
+                
               ),
               Padding(
                 padding: EdgeInsets.only(right: widgetWidth(200), top: widgetHeight(44)),
@@ -268,7 +269,7 @@ class _ProfileState extends State<Profile> {
                 itemWidth: widgetWidth(450),
                 loop: true,
                 duration: 120,
-                scrollDirection: Axis.vertical,
+                scrollDirection: Axis.horizontal,
                 // itemCount: 2,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(

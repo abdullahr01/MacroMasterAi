@@ -6,9 +6,10 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:macromasterai/Auth/LoginScreen.dart';
 import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/ProfileListTile.dart';
+import 'package:macromasterai/Constants/bounce_button.dart';
+import 'package:macromasterai/Constants/fade_in_animation.dart';
 import 'package:macromasterai/Constants/utils/dimensions.dart';
 import 'package:macromasterai/Screens/EditProfileScreen.dart';
-import 'package:macromasterai/Screens/billing_transaction.dart';
 import 'package:macromasterai/Screens/info_about.dart';
 
 class UserInfoDetails extends StatefulWidget {
@@ -101,80 +102,82 @@ class _UserInfoDetailsState extends State<UserInfoDetails> {
               SizedBox(
                 height: widgetHeight(10),
               ),
-              PoppinsTextStyle(
-                  text: name ?? 'Loading...',
-                  textSize: 20,
-                  textColor: Colors.black,
-                  isBold: true),
-              PoppinsTextStyle(
-                  text: email ?? 'Loading...',
-                  textSize: 16,
-                  textColor: Colors.black,
-                  isBold: false),
+              FadeInAnimation(
+                delay: 1.0,
+                child: PoppinsTextStyle(
+                    text: name ?? 'Loading...',
+                    textSize: 20,
+                    textColor: Colors.black,
+                    isBold: true),
+              ),
+              FadeInAnimation(
+                delay: 1.2,
+                child: PoppinsTextStyle(
+                    text: email ?? 'Loading...',
+                    textSize: 16,
+                    textColor: Colors.black,
+                    isBold: false),
+              ),
               SizedBox(
                 height: widgetHeight(30),
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const EditProfile()));
-                },
-                child: Container(
-                  height: widgetHeight(70),
-                  width: widgetWidth(210),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Colors.red),
-                  child: const Center(
-                    child: PoppinsTextStyle(
-                        text: 'Profile Details',
-                        textSize: 16,
-                        textColor: Colors.white,
-                        isBold: true),
-                  ),
-                ),
+              FadeInAnimation(
+                delay: 1.4,
+                child: BounceButton(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const EditProfile()), // Replace with your login screen widget
+                      );
+                    },
+                    text: "Profile Details",
+                    wHeight: widgetHeight(70),
+                    wWidth: widgetWidth(210),
+                    containerColor: Colors.red),
               ),
               SizedBox(
                 height: widgetHeight(60),
               ),
-              ProfileMenuButton(
-                awesomeIcon: LineAwesomeIcons.cog,
-                text: 'Settings',
-                endIcon: true,
-                textColor: Colors.black,
-                onPress: () {},
+              FadeInAnimation(
+                delay: 1.6,
+                child: ProfileMenuButton(
+                  awesomeIcon: LineAwesomeIcons.cog,
+                  text: 'Settings',
+                  endIcon: true,
+                  textColor: Colors.black,
+                  onPress: () {},
+                ),
               ),
-              ProfileMenuButton(
-                awesomeIcon: LineAwesomeIcons.wallet,
-                text: 'Billing Details',
-                endIcon: true,
-                textColor: Colors.black,
-                onPress: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const TransactionHistory()));
-                },
-              ),
+
               SizedBox(
                 height: widgetHeight(30),
               ),
-              ProfileMenuButton(
-                awesomeIcon: LineAwesomeIcons.info,
-                text: 'Information',
-                endIcon: true,
-                textColor: Colors.black,
-                onPress: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const AboutOurSection()));
-                },
+              FadeInAnimation(
+                delay: 2.0,
+                child: ProfileMenuButton(
+                  awesomeIcon: LineAwesomeIcons.info,
+                  text: 'Information',
+                  endIcon: true,
+                  textColor: Colors.black,
+                  onPress: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const AboutOurSection()));
+                  },
+                ),
               ),
-              ProfileMenuButton(
-                awesomeIcon: LineAwesomeIcons.alternate_sign_out,
-                text: 'Logout',
-                endIcon: false,
-                textColor: Colors.red,
-                onPress: () {
-                  signoutTheUser();
-                },
+              FadeInAnimation(
+                delay: 2.2,
+                child: ProfileMenuButton(
+                  awesomeIcon: LineAwesomeIcons.alternate_sign_out,
+                  text: 'Logout',
+                  endIcon: false,
+                  textColor: Colors.red,
+                  onPress: () {
+                    signoutTheUser();
+                  },
+                ),
               ),
             ],
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:macromasterai/Constants/utils/dimensions.dart';
 import 'package:macromasterai/Screens/CartPage.dart';
+import 'package:macromasterai/Screens/ChatBot.dart';
 import 'package:macromasterai/Screens/DetailsPage.dart';
 import 'package:macromasterai/Screens/HomePage.dart';
 import 'package:macromasterai/Screens/ProfilePage.dart';
@@ -16,7 +17,7 @@ class _CommonScreenSelectorState extends State<CommonScreenSelector> {
   int index = 0;
   final screens = [
     const HomePage(),
-    const Cart(),
+    const ChatBot(),
     const Details(),
     const Profile(),
   ];
@@ -54,15 +55,15 @@ class _CommonScreenSelectorState extends State<CommonScreenSelector> {
                 label: 'Home'),
             NavigationDestination(
                 icon: Icon(
-                  Icons.shopping_cart,
+                  Icons.settings,
                   color: Colors.grey,
                 ),
                 selectedIcon: Icon(
-                  Icons.shopping_cart_outlined,
+                  Icons.settings_suggest_outlined,
                   color: Colors.red,
                   size: 30,
                 ),
-                label: 'Cart'),
+                label: 'ChatBot'),
             NavigationDestination(
                 icon: Icon(
                   Icons.dashboard,

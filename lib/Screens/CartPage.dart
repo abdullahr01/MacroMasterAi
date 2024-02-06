@@ -1,22 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:macromasterai/CommonScreen.dart';
 import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/IngredientsContainer.dart';
 import 'package:macromasterai/Constants/utils/dimensions.dart';
+import 'package:macromasterai/Screens/ChatBot.dart';
 
-class Cart extends StatefulWidget {
-  const Cart({super.key});
+class Cart extends StatelessWidget {
+  final String? vname;
+  final String? image;
+  final String? cal;
+  final String? fat;
+  final String? protein;
+  final String? carbs;
+  Cart(
+      {super.key,
+        this.image,
+        this.cal,
+        this.fat,
+        this.protein,
+        this.carbs,
+        this.vname});
 
-  @override
-  State<Cart> createState() => _CartState();
-}
-
-class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
+    final hasData = (image != null &&
+        cal != null &&
+        fat != null &&
+        protein != null &&
+        protein != null &&
+        carbs != null);
     initMediaQuerySize(context);
     return Scaffold(
       backgroundColor: const Color(0xfff9f9f9),
-      body: Padding(
+      body: hasData
+          ? Padding(
         padding: EdgeInsets.only(
             top: widgetHeight(48),
             right: widgetWidth(15),
@@ -41,7 +58,7 @@ class _CartState extends State<Cart> {
                         size: 20,
                       ),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CommonScreenSelector()));
                       },
                     ),
                   ),
@@ -75,8 +92,8 @@ class _CartState extends State<Cart> {
               ),
               Padding(
                 padding: EdgeInsets.only(right: widgetWidth(200)),
-                child: const PoppinsTextStyle(
-                    text: 'Baked salmon & asparagus',
+                child: PoppinsTextStyle(
+                    text: vname.toString(),
                     textSize: 12,
                     textColor: Colors.black,
                     isBold: true),
@@ -99,8 +116,8 @@ class _CartState extends State<Cart> {
                     // color: Colors.grey,
                     height: widgetHeight(200),
                     width: widgetWidth(200),
-                    child:
-                        Image.asset('images/qq7prqha8j0f960b77ped3dd8g 1.png'),
+                    child: Image.asset(
+                        image.toString()),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
@@ -115,8 +132,8 @@ class _CartState extends State<Cart> {
                         SizedBox(
                           height: widgetHeight(8),
                         ),
-                        const PoppinsTextStyle(
-                            text: '190 kcal',
+                        PoppinsTextStyle(
+                            text: '${cal.toString()} kcal',
                             textSize: 14,
                             textColor: Colors.black,
                             isBold: false),
@@ -131,8 +148,8 @@ class _CartState extends State<Cart> {
                         SizedBox(
                           height: widgetHeight(8),
                         ),
-                        const PoppinsTextStyle(
-                            text: '87 g',
+                        PoppinsTextStyle(
+                            text: '${protein.toString()} g',
                             textSize: 14,
                             textColor: Colors.black,
                             isBold: false),
@@ -152,8 +169,8 @@ class _CartState extends State<Cart> {
                         SizedBox(
                           height: widgetHeight(8),
                         ),
-                        const PoppinsTextStyle(
-                            text: '65 g',
+                        PoppinsTextStyle(
+                            text: '${fat.toString()} g',
                             textSize: 14,
                             textColor: Colors.black,
                             isBold: false),
@@ -168,8 +185,8 @@ class _CartState extends State<Cart> {
                         SizedBox(
                           height: widgetHeight(8),
                         ),
-                        const PoppinsTextStyle(
-                            text: '84 g',
+                        PoppinsTextStyle(
+                            text: '${carbs.toString()} g',
                             textSize: 14,
                             textColor: Colors.black,
                             isBold: false),
@@ -194,7 +211,7 @@ class _CartState extends State<Cart> {
               ),
               const PoppinsTextStyle(
                 text:
-                    "Duis vestibulum risus nec sem auctor, sita amet fermentum odio mollis. Vivamus eleifend, food a non volutpat venenatis, neque elit viver healthy augue, in accumsan orci diam et augue. Nunc a sodales iaculis congue. Nullam vita food salmon laoreet, maximus sapien nec, sollicitudin dolor. Nunc interdum fermentum dolor nec an tempus. Nullam pellentesque odio id libero bibendum, id sagittis leo vulputate. Donec odio eros, healthy sollicitudin ut quam ut, suscipit aliquet neque.",
+                "Duis vestibulum risus nec sem auctor, sita amet fermentum odio mollis. Vivamus eleifend, food a non volutpat venenatis, neque elit viver healthy augue, in accumsan orci diam et augue. Nunc a sodales iaculis congue. Nullam vita food salmon laoreet, maximus sapien nec, sollicitudin dolor. Nunc interdum fermentum dolor nec an tempus. Nullam pellentesque odio id libero bibendum, id sagittis leo vulputate. Donec odio eros, healthy sollicitudin ut quam ut, suscipit aliquet neque.",
                 textColor: Colors.grey,
                 textSize: 15,
                 isBold: false,
@@ -242,23 +259,41 @@ class _CartState extends State<Cart> {
               SizedBox(
                 height: widgetHeight(30),
               ),
-              Container(
-                height: widgetHeight(70),
-                width: widgetWidth(386),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30), color: Colors.red),
-                child: const Center(
-                  child: PoppinsTextStyle(
-                      text: 'Add to Basket',
-                      textSize: 15,
-                      textColor: Colors.white,
-                      isBold: true),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ChatBot()));
+                },
+                child: Container(
+                  height: widgetHeight(70),
+                  width: widgetWidth(386),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.red),
+                  child: const Center(
+                    child: PoppinsTextStyle(
+                        text: 'Chat with AI Bot',
+                        textSize: 15,
+                        textColor: Colors.white,
+                        isBold: true),
+                  ),
                 ),
               ),
             ],
           ),
         ),
-      ),
+      )
+          : Padding(
+          padding: EdgeInsets.only(
+              top: widgetHeight(48),
+              right: widgetWidth(15),
+              left: widgetHeight(15)),
+          child: const Center(
+              child: PoppinsTextStyle(
+                  text: "Please select an item from the Food list",
+                  textSize: 17,
+                  textColor: Colors.grey,
+                  isBold: true))),
     );
   }
 }

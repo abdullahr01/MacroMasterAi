@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:macromasterai/Auth/LoginScreen.dart';
 import 'package:macromasterai/Constants/InputTextField.dart';
+import 'package:macromasterai/Constants/bounce_button.dart';
+import 'package:macromasterai/Constants/fade_in_animation.dart';
 import 'package:macromasterai/Constants/utils/dimensions.dart';
 
 class SignIn extends StatefulWidget {
@@ -13,6 +15,7 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  final weightController = TextEditingController();
   final nameController = TextEditingController();
   final ageController = TextEditingController();
   final emailController = TextEditingController();
@@ -34,7 +37,8 @@ class _SignInState extends State<SignIn> {
 
     try {
       // Login the user
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
@@ -42,23 +46,26 @@ class _SignInState extends State<SignIn> {
       // String userId = userCredential.user!.uid;
       // String username = nameController.text;
       User? user = userCredential.user;
-      if(user!=null) {
+      if (user != null) {
         await FirebaseFirestore.instance.collection("Users").doc(user.uid).set({
-        "Name": nameController.text,
-        "Age": ageController.text,
-        "PhoneNumber": mobileNumberController.text,
-        "Email": emailController.text,
-        "Password": passwordController.text,
-        "City": cityController.text
-      });
-      }
-      else {
+          "Name": nameController.text,
+          "Age": ageController.text,
+          "PhoneNumber": mobileNumberController.text,
+          "Email": emailController.text,
+          "Password": passwordController.text,
+          "City": cityController.text,
+          "Weight": weightController.text
+        });
+      } else {
         errorMessage = "User creation failed";
         showSnackbar(errorMessage);
       }
-
-      
-      
+      Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              LoginPage()), // Replace with your login screen widget
+    );
     } on FirebaseAuthException catch (e) {
       // Dismiss the loading circle
       Navigator.of(context, rootNavigator: true).pop();
@@ -91,10 +98,7 @@ class _SignInState extends State<SignIn> {
         }
       }
     }
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => LoginPage()), // Replace with your login screen widget
-    );
+    
   }
 
   void showSnackbar(String errorMessage) {
@@ -124,70 +128,87 @@ class _SignInState extends State<SignIn> {
                   child: Image.asset('images/macromsaster.png.png'),
                 ),
               ),
-              MyTextField(
-                controller: nameController,
-                labelText: "Name",
-                obscureText: false,
-                iconTextField: const Icon(Icons.person_outline_rounded),
-              ),
-              SizedBox(height: widgetHeight(16)),
-              MyTextField(
-                controller: ageController,
-                labelText: "Age",
-                obscureText: false,
-                iconTextField: const Icon(Icons.monitor_weight_outlined),
-              ),
-              SizedBox(height: widgetHeight(16)),
-              MyTextField(
-                controller: mobileNumberController,
-                labelText: "Mobile Number",
-                obscureText: false,
-                iconTextField: const Icon(Icons.phone),
-              ),
-              SizedBox(height: widgetHeight(16)),
-              MyTextField(
-                controller: ageController,
-                labelText: "City",
-                obscureText: false,
-                iconTextField: const Icon(Icons.location_city_rounded),
-              ),
-              SizedBox(height: widgetHeight(16)),
-              MyTextField(
-                controller: emailController,
-                labelText: "Email",
-                obscureText: false,
-                iconTextField: const Icon(Icons.email_outlined),
-              ),
-              SizedBox(height: widgetHeight(16)),
-              MyTextField(
-                controller: passwordController,
-                labelText: "Password",
-                obscureText: true,
-                iconTextField: const Icon(Icons.fingerprint),
-              ),
-              
-              SizedBox(height: widgetHeight(60)),
-              GestureDetector(
-                onTap: () {
-                  createTheUser();
-                },
-                child: Container(
-                  height: widgetHeight(80),
-                  width: widgetWidth(220),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.red),
-                  child: const Center(
-                    child: Text(
-                      "Create the Account",
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  ),
+              FadeInAnimation(
+                delay: 1.2,
+                child: MyTextField(
+                  controller: nameController,
+                  labelText: "Name",
+                  obscureText: false,
+                  iconTextField: const Icon(Icons.person_outline_rounded),
                 ),
               ),
+              SizedBox(height: widgetHeight(16)),
+              FadeInAnimation(
+                delay: 1.4,
+                child: MyTextField(
+                  controller: ageController,
+                  labelText: "Age",
+                  obscureText: false,
+                  iconTextField: const Icon(Icons.monitor_weight_outlined),
+                ),
+              ),
+              SizedBox(height: widgetHeight(16)),
+              FadeInAnimation(
+                delay: 1.6,
+                child: MyTextField(
+                  controller: weightController,
+                  labelText: "Weight",
+                  obscureText: false,
+                  iconTextField: const Icon(Icons.line_weight),
+                ),
+              ),
+              SizedBox(height: widgetHeight(16)),
+              FadeInAnimation(
+                delay: 1.8,
+                child: MyTextField(
+                  controller: mobileNumberController,
+                  labelText: "Mobile Number",
+                  obscureText: false,
+                  iconTextField: const Icon(Icons.phone),
+                ),
+              ),
+              SizedBox(height: widgetHeight(16)),
+              FadeInAnimation(
+                delay: 2.0,
+                child: MyTextField(
+                  controller: cityController,
+                  labelText: "City",
+                  obscureText: false,
+                  iconTextField: const Icon(Icons.location_city_rounded),
+                ),
+              ),
+              SizedBox(height: widgetHeight(16)),
+              FadeInAnimation(
+                delay: 2.2,
+                child: MyTextField(
+                  controller: emailController,
+                  labelText: "Email",
+                  obscureText: false,
+                  iconTextField: const Icon(Icons.email_outlined),
+                ),
+              ),
+              SizedBox(height: widgetHeight(16)),
+              FadeInAnimation(
+                delay: 2.4,
+                child: MyTextField(
+                  controller: passwordController,
+                  labelText: "Password",
+                  obscureText: true,
+                  iconTextField: const Icon(Icons.fingerprint),
+                ),
+              ),
+              SizedBox(height: widgetHeight(60)),
+              FadeInAnimation(
+                delay: 2.6,
+                child: BounceButton(
+                    onTap: () {
+                      createTheUser();
+                    },
+                    text: "Create the Account",
+                    wHeight: widgetHeight(80),
+                    wWidth: widgetWidth(220),
+                    containerColor: Colors.red),
+              )
             ],
           ),
         ),

@@ -4,8 +4,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:macromasterai/Auth/LoginScreen.dart';
 import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/FoodCard.dart';
+import 'package:macromasterai/Constants/ListImages.dart';
 import 'package:macromasterai/Constants/utils/dimensions.dart';
-import 'package:macromasterai/Screens/ChatBot.dart';
+import 'package:macromasterai/Screens/CartPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -43,7 +44,6 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     height: 40,
@@ -64,36 +64,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: widgetWidth(40)),
+                    padding: EdgeInsets.only(left: widgetWidth(110)),
                     child: const PoppinsTextStyle(
                         text: 'Home',
                         textSize: 20,
                         textColor: Colors.black,
                         isBold: true),
-                  ),
-                  Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const ChatBot()));
-                        },
-                        child: Container(
-                          height: 35,
-                          width: 35,
-                          // color: Colors.white,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(60)),
-                          child: Image.asset('images/openai-removebg-preview.png')
-                        ),
-                      ),
-                      const PoppinsTextStyle(
-                        text: "MacroMaster AI",
-                        textSize: 10,
-                        textColor: Colors.grey,
-                        isBold: true)
-                    ],
                   ),
                 ],
               ),
@@ -101,56 +77,7 @@ class _HomePageState extends State<HomePage> {
                 height: widgetHeight(30),
               ),
               // Search bar
-              Padding(
-                padding: EdgeInsets.only(
-                    top: widgetHeight(18), bottom: widgetHeight(18), left: widgetWidth(10), right: widgetWidth(10)),
-                child: TextField(
-                  controller: _searchController,
-                  decoration: InputDecoration(
-                      contentPadding:  EdgeInsets.symmetric(
-                          horizontal: widgetHeight(30), vertical: widgetWidth(13)),
-                      hintText: 'Search',
-                      hintStyle:
-                          const TextStyle(fontSize: 20, color: Colors.grey),
-                      suffixIcon: Padding(
-                        padding: EdgeInsets.only(right: widgetWidth(8)),
-                        child: GestureDetector(
-                            child: Container(
-                          height: widgetHeight(45),
-                          width: widgetWidth(50),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.red),
-                          child: const Icon(
-                            Icons.search,
-                            color: Colors.white,
-                            size: 26,
-                          ),
-                        )),
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
-                        borderRadius: BorderRadius.circular(35),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
-                        borderRadius: BorderRadius.circular(35),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: Color.fromARGB(255, 198, 198, 198)),
-                        borderRadius: BorderRadius.circular(35),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.red),
-                        borderRadius: BorderRadius.circular(35),
-                      )),
-                  // Handle search functionality here
-                  onChanged: (value) {
-                    // Handle search text changes
-                  },
-                ),
-              ),
+
               SizedBox(
                 height: widgetHeight(210),
                 width: widgetWidth(370),
@@ -170,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Padding(
                               padding:
-                                  EdgeInsets.only(top: widgetHeight(20), right: widgetWidth(30)),
+                              EdgeInsets.only(top: widgetHeight(20), right: widgetWidth(30)),
                               child: Column(
                                 children: [
                                   const PoppinsTextStyle(
@@ -191,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   Padding(
                                     padding:
-                                        EdgeInsets.only(top: widgetHeight(10), right: widgetWidth(20)),
+                                    EdgeInsets.only(top: widgetHeight(10), right: widgetWidth(20)),
                                     child: GestureDetector(
                                       onTap: () {},
                                       child: Container(
@@ -199,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                                         width: widgetWidth(160),
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                            BorderRadius.circular(30),
                                             color: Colors.red),
                                         child: const Center(
                                           child: PoppinsTextStyle(
@@ -248,31 +175,27 @@ class _HomePageState extends State<HomePage> {
                 height: widgetHeight(320),
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 2,
+                    itemCount: imagePathFood.length,
                     itemBuilder: (BuildContext context, int index) {
-                      List<String> imagePath = [
-                        'images/Mask.png',
-                        'images/Mask2.png',
-                      ];
-                      List<String> imageName = [
-                        'Avocado toast',
-                        'Vegetable mix',
-                      ];
-                      List<double> prices = [
-                        18.00,
-                        22.50,
-                      ];
-                      List<int> kcalories = [
-                        140,
-                        260,
-                      ];
+
                       return Padding(
                         padding: const EdgeInsets.only(right: 20),
-                        child: FoodCard(
-                            imagePath: imagePath[index],
-                            name: imageName[index],
-                            price: prices[index],
-                            kcal: kcalories[index]),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => Cart(
+                              vname: imageName[index],
+                              image: imagePathFood[index],
+                              cal: kcalories[index].toString(),
+                              protein: kproteins[index].toString(),
+                              fat: kfat[index].toString(),
+                              carbs: kcarbs[index].toString(),
+                            )));
+                          },
+                          child: FoodCard(
+                              imagePath: imagePathFood[index],
+                              name: imageName[index],
+                              kcal: kcalories[index]),
+                        ),
                       );
                     }),
               ),
@@ -297,7 +220,7 @@ class _HomePageState extends State<HomePage> {
                   leading: Container(
                     height: widgetHeight(120),
                     decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                    BoxDecoration(borderRadius: BorderRadius.circular(50)),
                     child: Image.asset('images/Mask3.png'),
                   ),
                   title: const PoppinsTextStyle(

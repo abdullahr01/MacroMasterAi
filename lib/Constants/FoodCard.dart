@@ -5,13 +5,11 @@ import 'package:macromasterai/Constants/utils/dimensions.dart';
 class FoodCard extends StatelessWidget {
   final String imagePath;
   final String name;
-  final double price;
   final int kcal;
 
   const FoodCard({super.key, 
     required this.imagePath,
     required this.name,
-    required this.price,
     required this.kcal,
   });
 
@@ -77,14 +75,7 @@ class FoodCard extends StatelessWidget {
             padding: EdgeInsets.only(left: widgetWidth(14), top: widgetHeight(4)),
             child: Row(
               children: [
-                PoppinsTextStyle(
-                    text: '\$ ${price.toStringAsFixed(2)}',
-                    textSize: 17,
-                    textColor: Colors.grey,
-                    isBold: false),
-                SizedBox(
-                  width: widgetWidth(30),
-                ),
+
                 const Icon(
                   Icons.local_fire_department_outlined,
                   color: Colors.orange,

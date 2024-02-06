@@ -5,8 +5,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:macromasterai/Auth/LoginScreen.dart';
 import 'package:macromasterai/Constants/Constants.dart';
+import 'package:macromasterai/Constants/bounce_button.dart';
+import 'package:macromasterai/Constants/fade_in_animation.dart';
 import 'package:macromasterai/Constants/info_container.dart';
 import 'package:macromasterai/Constants/utils/dimensions.dart';
+import 'package:macromasterai/Screens/UserProfileDetails.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -32,7 +35,9 @@ class _EditProfileState extends State<EditProfile> {
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => LoginPage()), // Replace with your login screen widget
+      MaterialPageRoute(
+          builder: (context) =>
+              LoginPage()), // Replace with your login screen widget
     );
   }
 
@@ -76,11 +81,15 @@ class _EditProfileState extends State<EditProfile> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(Icons.arrow_back)
-          ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const UserInfoDetails()), // Replace with your login screen widget
+              );
+            },
+            icon: const Icon(Icons.arrow_back)),
         title: const PoppinsTextStyle(
             text: 'Edit Profile',
             textSize: 18,
@@ -127,115 +136,113 @@ class _EditProfileState extends State<EditProfile> {
               SizedBox(
                 height: widgetHeight(50),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  DisplayInfo(
-                    dIname: name,
-                    boldBoolean: false,
-                    dIwidth: 170,
-                    dIheight: 140,
-                    cardName: "Name",
-                  ),
-                  DisplayInfo(
-                    dIname: age,
-                    boldBoolean: false,
-                    dIwidth: 160,
-                    dIheight: 140,
-                    cardName: "Age",
-                  ),
-                ],
+              FadeInAnimation(
+                delay: 1.2,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    DisplayInfo(
+                      dIname: name,
+                      boldBoolean: false,
+                      dIwidth: 170,
+                      dIheight: 140,
+                      cardName: "Name",
+                    ),
+                    DisplayInfo(
+                      dIname: age,
+                      boldBoolean: false,
+                      dIwidth: 160,
+                      dIheight: 140,
+                      cardName: "Age",
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: widgetHeight(30)),
-              DisplayInfo(
-                dIname: email,
-                boldBoolean: false,
-                dIwidth: 350,
-                dIheight: 150,
-                cardName: "Email",
+              FadeInAnimation(
+                delay: 1.4,
+                child: DisplayInfo(
+                  dIname: email,
+                  boldBoolean: false,
+                  dIwidth: 350,
+                  dIheight: 180,
+                  cardName: "Email",
+                ),
               ),
               SizedBox(height: widgetHeight(30)),
-              DisplayInfo(
-                dIname: mobileNumber,
-                boldBoolean: false,
-                dIwidth: 350,
-                dIheight: 150,
-                cardName: "Mobile Number",
+              FadeInAnimation(
+                delay: 1.6,
+                child: DisplayInfo(
+                  dIname: mobileNumber,
+                  boldBoolean: false,
+                  dIwidth: 350,
+                  dIheight: 150,
+                  cardName: "Mobile Number",
+                ),
               ),
               SizedBox(height: widgetHeight(30)),
-              DisplayInfo(
-                dIname: city,
-                boldBoolean: false,
-                dIwidth: 350,
-                dIheight: 150,
-                cardName: "City",
+              FadeInAnimation(
+                delay: 1.8,
+                child: DisplayInfo(
+                  dIname: city,
+                  boldBoolean: false,
+                  dIwidth: 350,
+                  dIheight: 150,
+                  cardName: "City",
+                ),
               ),
               SizedBox(
                 height: widgetHeight(40),
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const EditProfile()));
-                },
-                child: Container(
-                  height: widgetHeight(80),
-                  width: widgetWidth(300),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Colors.red),
-                  child: const Center(
-                    child: PoppinsTextStyle(
-                        text: 'Edit Profile',
-                        textSize: 16,
-                        textColor: Colors.white,
-                        isBold: true),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: widgetHeight(30),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                    left: widgetWidth(90), right: widgetWidth(90)),
-                child: const Divider(
-                  height: 10,
-                  thickness: 2,
-                ),
-              ),
-              SizedBox(
-                height: widgetHeight(30),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const PoppinsTextStyle(
-                      text: 'Logout from the app?',
-                      textSize: 15,
-                      textColor: Colors.grey,
-                      isBold: true),
-                  GestureDetector(
+              FadeInAnimation(
+                delay: 2.0,
+                child: BounceButton(
                     onTap: () {
-                      signoutTheUser();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const EditProfile()));
                     },
-                    child: Container(
-                      height: widgetHeight(60),
-                      width: widgetWidth(100),
-                      decoration: BoxDecoration(
-                          // border: Border.all(color: Colors.red, width: 5),
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.red),
-                      child: const Center(
-                        child: PoppinsTextStyle(
-                            text: 'Logout',
-                            textSize: 16,
-                            textColor: Colors.white,
-                            isBold: true),
-                      ),
-                    ),
+                    text: "Edit Profile",
+                    wHeight: widgetHeight(80),
+                    wWidth: widgetWidth(300),
+                    containerColor: Colors.red),
+              ),
+              SizedBox(
+                height: widgetHeight(30),
+              ),
+              FadeInAnimation(
+                delay: 2.2,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: widgetWidth(90), right: widgetWidth(90)),
+                  child: const Divider(
+                    height: 10,
+                    thickness: 2,
                   ),
-                ],
+                ),
+              ),
+              SizedBox(
+                height: widgetHeight(30),
+              ),
+              FadeInAnimation(
+                delay: 2.4,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const PoppinsTextStyle(
+                        text: 'Logout from the app?',
+                        textSize: 15,
+                        textColor: Colors.grey,
+                        isBold: true),
+                    BounceButton(
+                        onTap: () {
+                          signoutTheUser();
+                        },
+                        text: "Logout",
+                        wHeight: widgetHeight(60),
+                        wWidth: widgetWidth(100),
+                        containerColor: Colors.red)
+                  ],
+                ),
               ),
               SizedBox(
                 height: widgetHeight(20),

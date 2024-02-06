@@ -7,6 +7,8 @@ import 'package:macromasterai/Auth/SignInScreen.dart';
 import 'package:macromasterai/CommonScreen.dart';
 import 'package:macromasterai/Constants/InputTextField.dart';
 import 'package:macromasterai/Constants/SquareTiles.dart';
+import 'package:macromasterai/Constants/bounce_button.dart';
+import 'package:macromasterai/Constants/fade_in_animation.dart';
 import 'package:macromasterai/Constants/utils/dimensions.dart';
 
 class LoginPage extends StatefulWidget {
@@ -53,13 +55,13 @@ class _LoginPageState extends State<LoginPage> {
         case 'invalid-credential':
           errorMessage = 'Wrong password or username provided for that user.';
           break;
-        // case 'invalid-email':
-        //   errorMessage = 'Email address is invalid.';
-        //   break;
-        // Add more cases for different error codes as needed
+      // case 'invalid-email':
+      //   errorMessage = 'Email address is invalid.';
+      //   break;
+      // Add more cases for different error codes as needed
 
         default:
-          // Handle unexpected error codes
+        // Handle unexpected error codes
           errorMessage = 'An unexpected error occurred. Please try again.';
           break;
       }
@@ -70,14 +72,17 @@ class _LoginPageState extends State<LoginPage> {
         // Check if the loading circle is still present, then dismiss it
         if (Navigator.canPop(context)) {
           Navigator.pop(context);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                const CommonScreenSelector()), // Replace with your login screen widget
+          );
         }
       }
     }
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => CommonScreenSelector()), // Replace with your login screen widget
-    );
   }
+
 
   void showSnackbar(String errorMessage) {
     final snackBar = SnackBar(
@@ -167,51 +172,60 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: widgetWidth(16), vertical: widgetHeight(30)),
+          padding: EdgeInsets.symmetric(
+              horizontal: widgetWidth(16), vertical: widgetHeight(30)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Hero(
-                tag: 'MacroAi',
-                child: SizedBox(
-                  height: widgetHeight(270),
-                  width: widgetWidth(270),
-                  child: Image.asset('images/macromsaster.png.png'),
-                ),
-              ),
+                  tag: 'MacroAi',
+                  child: SizedBox(
+                    height: widgetHeight(270),
+                    width: widgetWidth(270),
+                    child: Image.asset('images/macromsaster.png.png'),
+                  )),
               SizedBox(
                 height: widgetHeight(30),
               ),
-              MyTextField(
-                controller: emailController,
-                labelText: "Gmail",
-                obscureText: false,
-                iconTextField: const Icon(Icons.email_outlined),
+              FadeInAnimation(
+                delay: 1.2,
+                child: MyTextField(
+                  controller: emailController,
+                  labelText: "Gmail",
+                  obscureText: false,
+                  iconTextField: const Icon(Icons.email_outlined),
+                ),
               ),
               SizedBox(
                 height: widgetHeight(20),
               ),
-              MyTextField(
-                controller: passwordController,
-                labelText: "Password",
-                obscureText: true,
-                iconTextField: const Icon(Icons.fingerprint),
+              FadeInAnimation(
+                delay: 1.4,
+                child: MyTextField(
+                  controller: passwordController,
+                  labelText: "Password",
+                  obscureText: true,
+                  iconTextField: const Icon(Icons.fingerprint),
+                ),
               ),
               SizedBox(
                 height: widgetHeight(20),
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const SignIn()));
-                },
-                child: const Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Forgot Password?",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
+              FadeInAnimation(
+                delay: 1.4,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const SignIn()));
+                  },
+                  child: const Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                 ),
@@ -219,65 +233,45 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: widgetHeight(15),
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const SignIn()));
-                },
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Text(
-                        "Don't have an account? ",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      SizedBox(
-                        width: widgetWidth(5),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const SignIn()));
-                        },
-                        child: const Text(
-                          "Sign Up",
+              FadeInAnimation(
+                delay: 1.4,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const SignIn()));
+                  },
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const Text(
+                          "Don't have an account? ",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.blue,
+                            color: Colors.grey,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: widgetHeight(60),
-              ),
-              GestureDetector(
-                onTap: () {
-                  loginTheUser();
-                },
-                child: Container(
-                  height: widgetHeight(70),
-                  width: widgetWidth(210),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.red,
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "LOG IN",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                        SizedBox(
+                          width: widgetWidth(5),
+                        ),
+                        FadeInAnimation(
+                          delay: 1.5,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const SignIn()));
+                            },
+                            child: const Text(
+                              "Sign Up",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -285,40 +279,59 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: widgetHeight(60),
               ),
-              Row(
-                children: [
-                  Expanded(
-                      child: Divider(
-                    thickness: 0.7,
-                    color: Colors.grey[400],
-                  )),
-                  const Text("Or continue with"),
-                  Expanded(
-                      child: Divider(
-                    thickness: 0.7,
-                    color: Colors.grey[400],
-                  )),
-                ],
+              FadeInAnimation(
+                  delay: 1.6,
+                  child: BounceButton(
+                      onTap: () {
+                        loginTheUser();
+                      },
+                      text: "LOG IN",
+                      wHeight: widgetHeight(70),
+                      wWidth: widgetWidth(210),
+                      containerColor: Colors.red)),
+              SizedBox(
+                height: widgetHeight(60),
+              ),
+              FadeInAnimation(
+                delay: 1.8,
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Divider(
+                      thickness: 0.7,
+                      color: Colors.grey[400],
+                    )),
+                    const Text("Or continue with"),
+                    Expanded(
+                        child: Divider(
+                      thickness: 0.7,
+                      color: Colors.grey[400],
+                    )),
+                  ],
+                ),
               ),
               SizedBox(
                 height: widgetHeight(40),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //Google
-                  SquareTile(
-                    ImagePath: 'images/googlepng-removebg-preview.png',
-                    onTap: () => googleButtonClick(),
-                  ),
-                  SizedBox(
-                    width: widgetWidth(20),
-                  ),
-                  SquareTile(
-                    ImagePath: 'images/facebookpng-removebg-preview.png',
-                    onTap: () => facebookButtonClick(),
-                  )
-                ],
+              FadeInAnimation(
+                delay: 2.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //Google
+                    SquareTile(
+                      ImagePath: 'images/googlepng-removebg-preview.png',
+                      onTap: () => googleButtonClick(),
+                    ),
+                    SizedBox(
+                      width: widgetWidth(20),
+                    ),
+                    SquareTile(
+                      ImagePath: 'images/facebookpng-removebg-preview.png',
+                      onTap: () => facebookButtonClick(),
+                    )
+                  ],
+                ),
               ),
               _errorMessage(),
             ],
