@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:macromasterai/Constants/utils/dimensions.dart';
-import 'package:macromasterai/Screens/CartPage.dart';
 import 'package:macromasterai/Screens/ChatBot.dart';
 import 'package:macromasterai/Screens/DetailsPage.dart';
 import 'package:macromasterai/Screens/HomePage.dart';

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
+import 'package:macromasterai/CommonScreen.dart';
 import 'package:macromasterai/Constants/Constants.dart';
 import 'package:macromasterai/Constants/ListImages.dart';
 import 'package:macromasterai/Constants/utils/dimensions.dart';
@@ -81,7 +82,7 @@ class _ProfileState extends State<Profile> {
                         size: 20,
                       ),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const CommonScreenSelector()));
                       },
                     ),
                   ),

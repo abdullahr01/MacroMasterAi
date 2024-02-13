@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:macromasterai/Auth/SignInScreen.dart';
+import 'package:macromasterai/Auth/phone_auth.dart';
 import 'package:macromasterai/CommonScreen.dart';
 import 'package:macromasterai/Constants/InputTextField.dart';
 import 'package:macromasterai/Constants/SquareTiles.dart';
@@ -218,13 +219,18 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const SignIn()));
                   },
-                  child: const Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      "Forgot Password?",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PhoneAuth()));
+                    },
+                    child: const Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        "Forgot Password?",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                   ),

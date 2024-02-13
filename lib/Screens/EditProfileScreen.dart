@@ -24,6 +24,7 @@ class _EditProfileState extends State<EditProfile> {
   String? city;
   String? mobileNumber;
   String? age;
+  String? password;
 
   final editNameController = TextEditingController();
   final editEmailController = TextEditingController();
@@ -57,6 +58,7 @@ class _EditProfileState extends State<EditProfile> {
             age = data["Age"];
             mobileNumber = data["PhoneNumber"];
             city = data["City"];
+            password = data["Password"];
           });
         }
       } catch (e) {
@@ -191,11 +193,22 @@ class _EditProfileState extends State<EditProfile> {
                   cardName: "City",
                 ),
               ),
+              SizedBox(height: widgetHeight(30)),
+              FadeInAnimation(
+                delay: 2.0,
+                child: DisplayInfo(
+                  dIname: password,
+                  boldBoolean: false,
+                  dIwidth: 350,
+                  dIheight: 150,
+                  cardName: "Password",
+                ),
+              ),
               SizedBox(
                 height: widgetHeight(40),
               ),
               FadeInAnimation(
-                delay: 2.0,
+                delay: 2.2,
                 child: BounceButton(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
